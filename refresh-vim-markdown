@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+num_processes=`ps ax | grep refresh-vim-markdown | grep -v grep | wc -l`
+if [ $num_processes -lt 3 ]; then
+  # raw_markdown=`cat`
+  # echo "$raw_markdown" > /tmp/lala.md
+  # cmp -s /tmp/lala.md /tmp/lala_old.md
+  cmp -s $1 /tmp/lala_old.md
+  if [ $? -eq 1 ]; then
+    # echo "$raw_markdown" | gfm > /tmp/lala.html
+    # rm /tmp/lala.html
+    # gfm $1 > /tmp/lala.html
+    sleep 0.5
+    gfm $1 > /tmp/lala.html
+    # cat $1 | gfm > /tmp/lala.html
+    osascript ~/bin/refresh-vim-markdown.scpt
+    # mv /tmp/lala.md /tmp/lala_old.md
+    # cp $1 /tmp/lala_old.md
+    mv $1 /tmp/lala_old.md
+  fi
+fi

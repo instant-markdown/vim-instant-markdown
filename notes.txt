@@ -1,0 +1,4 @@
+Need to do the following from applescript(s)
+- refresh tab in browser
+- close tab in browser
+- (opening the page in the bground can be done via `open`)
