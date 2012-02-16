@@ -16,4 +16,3 @@ endfunction
 autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI *.{md,mkd,mkdn,mark*} silent call UpdateMarkdown()
 autocmd BufWinLeave *.{md,mkd,mkdn,mark*} silent call CloseMarkdown()
 autocmd BufWinEnter *.{md,mkd,mkdn,mark*} silent call OpenMarkdown()
-autocmd BufNewFile *.{md,mkd,mkdn,mark*} silent call OpenMarkdown()
