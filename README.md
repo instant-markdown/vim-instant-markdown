@@ -12,6 +12,7 @@ You first need to have Ruby with RubyGems, and node.js with npm installed. (In t
 
 - `[sudo] gem install redcarpet pygments.rb`
 - `[sudo] npm -g install instant-markdown-d`
+- If you're on Linux, the `xdg-utils` package needs to be installed (is installed by default on Ubuntu).
 - Copy the instant-markdown.vim file from this repo and and place it in your ~/.vim/plugin folder, or use pathogen.
 - Open a markdown file in vim and enjoy!
 
