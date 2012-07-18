@@ -17,6 +17,6 @@ function! CloseMarkdown()
   silent! exec "silent! !curl -s -X DELETE http://localhost:8090/ &>/dev/null &"
 endfunction
 
-autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI *.{md,mkd,mkdn,mark*} silent call UpdateMarkdown()
-autocmd BufWinLeave *.{md,mkd,mkdn,mark*} silent call CloseMarkdown()
-autocmd BufWinEnter *.{md,mkd,mkdn,mark*} silent call OpenMarkdown()
+autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI *.{md,mkd,mkdn,mdown,mark*} silent call UpdateMarkdown()
+autocmd BufWinLeave *.{md,mkd,mkdn,mdown,mark*} silent call CloseMarkdown()
+autocmd BufWinEnter *.{md,mkd,mkdn,mdown,mark*} silent call OpenMarkdown()
