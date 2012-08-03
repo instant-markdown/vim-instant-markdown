@@ -18,8 +18,8 @@ function! CloseMarkdown()
 endfunction
 
 " Only README.md is recognized by vim as type markdown. Do this to make ALL .md files markdown
-autocmd BufWinEnter *.{md,mkd,mkdn,mark*} silent setf markdown
+autocmd BufWinEnter *.{md,mkd,mkdn,mdown,mark*} silent setf markdown
 
-autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI *.{md,mkd,mkdn,mark*} silent call UpdateMarkdown()
-autocmd BufWinLeave *.{md,mkd,mkdn,mark*} silent call CloseMarkdown()
-autocmd BufWinEnter *.{md,mkd,mkdn,mark*} silent call OpenMarkdown()
+autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI *.{md,mkd,mkdn,mdown,mark*} silent call UpdateMarkdown()
+autocmd BufWinLeave *.{md,mkd,mkdn,mdown,mark*} silent call CloseMarkdown()
+autocmd BufWinEnter *.{md,mkd,mkdn,mdown,mark*} silent call OpenMarkdown()
