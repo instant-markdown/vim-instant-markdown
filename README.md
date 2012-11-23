@@ -16,6 +16,13 @@ You first need to have Ruby with RubyGems, and node.js with npm installed. (In t
 - Copy the instant-markdown.vim file from this repo and and place it in your ~/.vim/plugin folder, or use pathogen.
 - Open a markdown file in vim and enjoy!
 
+Configuration
+-------------
+By default, vim-instant-markdown will update the display in realtime.  If that
+taxes your system, you can specify `let g:instant_markdown_slow = 1` before
+loading the plugin.  This will cause vim-instant-markdown to only refresh once
+you've left insert mode or saved the buffer.
+
 Supported Platforms
 -------------------
 OSX and Unix/Linuxes*.

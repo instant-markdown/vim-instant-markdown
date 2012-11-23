@@ -1,3 +1,7 @@
+if !exists("g:instant_markdown_slow")
+    g:instant_markdown_slow = 0
+endif
+
 function! UpdateMarkdown()
   if (b:im_needs_init)
     let b:im_needs_init = 0
@@ -12,11 +16,18 @@ endfunction
 function! OpenMarkdown()
   let b:last_number_of_changes = ""
   let b:im_needs_init = 1
+  if g:instant_markdown_slow
+      call UpdateMarkdown()
+  endif
 endfunction
 function! CloseMarkdown()
   silent! exec "silent! !curl -s -X DELETE http://localhost:8090/ &>/dev/null &"
 endfunction
 
-autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI <buffer> silent call UpdateMarkdown()
+if g:instant_markdown_slow
+    autocmd InsertLeave,BufWrite <buffer> silent call UpdateMarkdown()
+else
+    autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI <buffer> silent call UpdateMarkdown()
+endif
 autocmd BufWinLeave <buffer> silent call CloseMarkdown()
 autocmd BufWinEnter <buffer> silent call OpenMarkdown()
