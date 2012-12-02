@@ -19,6 +19,21 @@ function! CloseMarkdown()
   call system("curl -s -X DELETE http://localhost:8090/ &>/dev/null &")
 endfunction
 
-autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI <buffer> silent call UpdateMarkdown()
-autocmd BufWinLeave <buffer> silent call CloseMarkdown()
-autocmd BufWinEnter <buffer> silent call OpenMarkdown()
+" autocmd CursorMoved,CursorMovedI,CursorHold,CursorHoldI <buffer> silent call UpdateMarkdown()
+" autocmd BufWinLeave <buffer> silent call CloseMarkdown()
+" autocmd BufWinEnter <buffer> silent call OpenMarkdown()
+
+" BufEnter:
+"   Refresh view in case we came from a different markdown file. This should
+" only fire if BufWinEnter has already happened; so BufWinEnter and BufWinLeave
+" must create and delete the autocmd.
+"
+" Save implementing it for later.
+"
+" BufWinEnter:
+"   Number of markdown buffers = 0? Start daemon. Add self to list.
+" Refresh view.
+"
+" BufWinLeave:
+"   Remove self from view. Number of markdown buffers = 0? Kill daemon.
+
