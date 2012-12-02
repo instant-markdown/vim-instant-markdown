@@ -86,13 +86,19 @@ fu! s:temperedRefresh()
     endif
 endfu
 
+" I really, really hope there's a better way to do this.
+fu! s:myBufNr()
+    return str2nr(expand('<abuf>'))
+endfu
+
 " # Hur we go
 fu! s:pushMarkdown()
+    let bufnr = s:myBufNr()
     call s:initDict()
     if len(s:buffers) == 0
         call s:startDaemon()
     endif
-    call s:pushBuffer(expand('<abuf>'))
+    call s:pushBuffer(bufnr)
     let b:changedtickLast = b:changedtick
 endfu
 
@@ -105,7 +111,7 @@ aug instant-markdown
 aug END
 
 fu! s:popMarkdown()
-    let bufnr = expand('<abuf>')
+    let bufnr = s:myBufNr()
     silent au! instant-markdown * <buffer=abuf>
     call s:popBuffer(bufnr)
     if len(s:buffers) == 0
