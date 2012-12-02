@@ -83,3 +83,28 @@ endfu
 function! s:bufGetContents(bufnr)
   return join(getbufline(a:bufnr, 1, "$"), "\n")
 endfu
+
+" # Hur we go
+fu! s:pushMarkdown()
+    call s:initDict()
+    if len(s:buffers) == 0
+        call s:startDaemon()
+    endif
+    call s:pushBuffer(expand('<abuf>'))
+endfu
+
+aug instant-markdown
+    au! * <buffer>
+    au BufEnter <buffer> call s:refreshView()
+    au BufWinLeave <buffer> call s:popMarkdown()
+    au BufwinEnter <buffer> call s:pushMarkdown()
+aug END
+
+fu! s:popMarkdown()
+    let bufnr = expand('<abuf>')
+    silent au! instant-markdown * <buffer=abuf>
+    call s:popBuffer(bufnr)
+    if len(s:buffers) == 0
+        call s:killDaemon()
+    endif
+endfu
