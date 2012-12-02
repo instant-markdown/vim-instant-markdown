@@ -38,11 +38,12 @@ endfunction
 "   Remove self from view. Number of markdown buffers = 0? Kill daemon.
 
 " # UTILITY FUNCTIONS
-function! s:refreshView(bufnr)
+function! s:refreshView()
+    let bufnr = expand('<bufnr>')
     echom "  RefreshView"
     " Add a space to input to avoid complaints
     call system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
-                \ ' '.s:bufGetContents(a:bufnr))
+                \ ' '.s:bufGetContents(bufnr))
 endfu
 
 function! s:startDaemon()
