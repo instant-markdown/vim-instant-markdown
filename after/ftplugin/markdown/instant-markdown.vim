@@ -48,8 +48,9 @@ function! s:refreshView()
                 \ ' '.s:bufGetContents(bufnr))
 endfu
 
-function! s:startDaemon()
-    call system("instant-markdown-d &>/dev/null &", "*Initializing*")
+function! s:startDaemon(initialMD)
+    " Add a space to input to avoid complaints
+    call system("instant-markdown-d &>/dev/null &", ' '.a:initialMD)
 endfu
 
 function! s:initDict()
@@ -96,7 +97,7 @@ fu! s:pushMarkdown()
     let bufnr = s:myBufNr()
     call s:initDict()
     if len(s:buffers) == 0
-        call s:startDaemon()
+        call s:startDaemon(s:bufGetContents(bufnr))
     endif
     call s:pushBuffer(bufnr)
     let b:changedtickLast = b:changedtick
