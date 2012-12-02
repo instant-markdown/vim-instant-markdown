@@ -87,6 +87,16 @@ function! s:bufGetContents(bufnr)
   return join(getbufline(a:bufnr, 1, "$"), "\n")
 endfu
 
+" 'All things in moderation'
+fu! s:temperedRefresh()
+    if !exists('b:changedtickLast')
+        let b:changedtickLast = b:changedtick
+    elseif b:changedtickLast != b:changedtick
+        let b:changedtickLast = b:changedtick
+        call s:refreshView()
+    endif
+endfu
+
 " # Hur we go
 fu! s:pushMarkdown()
     call s:initDict()
@@ -94,12 +104,13 @@ fu! s:pushMarkdown()
         call s:startDaemon()
     endif
     call s:pushBuffer(expand('<abuf>'))
+    let b:changedtickLast = b:changedtick
 endfu
 
 aug instant-markdown
     au! * <buffer>
     au BufEnter <buffer> call s:refreshView()
-    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:refreshView()
+    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     au BufWinLeave <buffer> call s:popMarkdown()
     au BufwinEnter <buffer> call s:pushMarkdown()
 aug END
