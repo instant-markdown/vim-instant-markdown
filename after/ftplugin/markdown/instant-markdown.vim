@@ -36,6 +36,9 @@ endfunction
 "
 " BufWinLeave:
 "   Remove self from view. Number of markdown buffers = 0? Kill daemon.
+"
+" When it's time, we want to refresh.  What signifies "it is time?" the right
+" autocmds, obviously. And they are: CursorMoved, CursorHold
 
 " # UTILITY FUNCTIONS
 function! s:refreshView()
@@ -96,6 +99,7 @@ endfu
 aug instant-markdown
     au! * <buffer>
     au BufEnter <buffer> call s:refreshView()
+    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:refreshView()
     au BufWinLeave <buffer> call s:popMarkdown()
     au BufwinEnter <buffer> call s:pushMarkdown()
 aug END
