@@ -37,3 +37,37 @@ endfunction
 " BufWinLeave:
 "   Remove self from view. Number of markdown buffers = 0? Kill daemon.
 
+" # UTILITY FUNCTIONS
+function! s:refreshView(bufnr)
+    " Add a space to input to avoid complaints
+    call system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
+                \ ' '.s:bufGetContents(a:bufnr))
+endfu
+
+function! s:startDaemon()
+    call system("instant-markdown-d &>/dev/null &", "*Initializing*")
+endfu
+
+function! s:initDict()
+    if !exists('s:buffers')
+        let s:buffers = {}
+    endif
+endfu
+
+function! s:pushBuffer(bufnr)
+    call s:initDict()
+    let s:buffers[a:bufnr] = 1
+endfu
+
+function! s:popBuffer(bufnr)
+    call s:initDict()
+    call remove(s:buffers, a:bufnr)
+endfu
+
+function! s:killDaemon()
+    call system("curl -s -X DELETE http://localhost:8090/ &>/dev/null &")
+endfu
+
+function! s:bufGetContents(bufnr)
+  return join(getbufline(a:bufnr, 1, "$"), "\n")
+endfu
