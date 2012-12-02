@@ -39,32 +39,43 @@ endfunction
 
 " # UTILITY FUNCTIONS
 function! s:refreshView(bufnr)
+    echom "  RefreshView"
     " Add a space to input to avoid complaints
     call system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
                 \ ' '.s:bufGetContents(a:bufnr))
 endfu
 
 function! s:startDaemon()
+    echom "  Starting daemon"
     call system("instant-markdown-d &>/dev/null &", "*Initializing*")
 endfu
 
 function! s:initDict()
+    echom "  Init s:buffers"
     if !exists('s:buffers')
         let s:buffers = {}
+    else
+        echom "  s:buffers already exists, "
+        for [k, v] in items(s:buffers)
+            echom "    " . k . ": " . v
+        endfor
     endif
 endfu
 
 function! s:pushBuffer(bufnr)
+    echom "  Pushing #" . a:bufnr
     call s:initDict()
     let s:buffers[a:bufnr] = 1
 endfu
 
 function! s:popBuffer(bufnr)
+    echom "  Popping #" . a:bufnr
     call s:initDict()
     call remove(s:buffers, a:bufnr)
 endfu
 
 function! s:killDaemon()
+    echom "  Killing daemon"
     call system("curl -s -X DELETE http://localhost:8090/ &>/dev/null &")
 endfu
 
