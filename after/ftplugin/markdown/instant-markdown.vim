@@ -77,6 +77,8 @@ function! s:bufGetContents(bufnr)
   return join(getbufline(a:bufnr, 1, "$"), "\n")
 endfu
 
+" ## Refresh if there's something new worth showing
+"
 " 'All things in moderation'
 fu! s:temperedRefresh()
     if !exists('b:changedtickLast')
@@ -93,6 +95,11 @@ fu! s:myBufNr()
 endfu
 
 " # Hur we go
+" ## push a new Markdown buffer into the system.
+"
+" 1. Track it so we know when to garbage collect the daemon
+" 2. Start daemon if we're on the first MD buffer.
+" 3. Initialize changedtickLast, possibly needlessly(?)
 fu! s:pushMarkdown()
     let bufnr = s:myBufNr()
     call s:initDict()
@@ -111,6 +118,12 @@ aug instant-markdown
     au BufwinEnter <buffer> call s:pushMarkdown()
 aug END
 
+" ## pop a Markdown buffer
+"
+" 1. Pop the buffer reference
+" 2. Garbage collection
+"     * daemon
+"     * autocmds
 fu! s:popMarkdown()
     let bufnr = s:myBufNr()
     silent au! instant-markdown * <buffer=abuf>
