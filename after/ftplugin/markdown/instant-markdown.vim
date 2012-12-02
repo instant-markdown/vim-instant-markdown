@@ -1,4 +1,4 @@
-" # UTILITY FUNCTIONS
+" # Utility Functions " {{{1
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
     " Add a space to input to avoid complaints
@@ -35,23 +35,13 @@ function! s:bufGetContents(bufnr)
   return join(getbufline(a:bufnr, 1, "$"), "\n")
 endfu
 
-" ## Refresh if there's something new worth showing
-"
-" 'All things in moderation'
-fu! s:temperedRefresh()
-    if !exists('b:changedtickLast')
-        let b:changedtickLast = b:changedtick
-    elseif b:changedtickLast != b:changedtick
-        let b:changedtickLast = b:changedtick
-        call s:refreshView()
-    endif
-endfu
-
 " I really, really hope there's a better way to do this.
 fu! s:myBufNr()
     return str2nr(expand('<abuf>'))
 endfu
 
+" # Functions called by autocmds " {{{1
+"
 " ## push a new Markdown buffer into the system.
 "
 " 1. Track it so we know when to garbage collect the daemon
@@ -67,14 +57,6 @@ fu! s:pushMarkdown()
     let b:changedtickLast = b:changedtick
 endfu
 
-aug instant-markdown
-    au! * <buffer>
-    au BufEnter <buffer> call s:refreshView()
-    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
-    au BufWinLeave <buffer> call s:popMarkdown()
-    au BufwinEnter <buffer> call s:pushMarkdown()
-aug END
-
 " ## pop a Markdown buffer
 "
 " 1. Pop the buffer reference
@@ -89,3 +71,27 @@ fu! s:popMarkdown()
         call s:killDaemon()
     endif
 endfu
+
+" ## Refresh if there's something new worth showing
+"
+" 'All things in moderation'
+fu! s:temperedRefresh()
+    if !exists('b:changedtickLast')
+        let b:changedtickLast = b:changedtick
+    elseif b:changedtickLast != b:changedtick
+        let b:changedtickLast = b:changedtick
+        call s:refreshView()
+    endif
+endfu
+
+" # Define the autocmds " {{{1
+aug instant-markdown
+    au! * <buffer>
+    au BufEnter <buffer> call s:refreshView()
+    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
+    au BufWinLeave <buffer> call s:popMarkdown()
+    au BufwinEnter <buffer> call s:pushMarkdown()
+aug END
+
+" }}}1
+" vim: fdm=marker
