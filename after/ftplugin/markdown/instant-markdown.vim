@@ -1,3 +1,8 @@
+" # Configuration
+if !exists('g:instant_markdown_slow')
+    let g:instant_markdown_slow = 0
+endif
+
 " # Utility Functions
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
@@ -88,7 +93,11 @@ endfu
 aug instant-markdown
     au! * <buffer>
     au BufEnter <buffer> call s:refreshView()
-    au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
+    if g:instant_markdown_slow
+        au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
+    else
+        au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
+    endif
     au BufWinLeave <buffer> call s:popMarkdown()
     au BufwinEnter <buffer> call s:pushMarkdown()
 aug END
