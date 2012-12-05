@@ -22,6 +22,12 @@ OSX and Unix/Linuxes*.
 
 <sub>*: One annoyance in Linux is that there's no way to reliably open a browser page in the background, so you'll likely have to manually refocus your vim session everytime you open a Markdown file. If you have ideas on how to address this I'd love to know!</sub>
 
+FAQ
+---
+> Why don't my `<bla>.md` files trigger this plugin?
+
+By default, vim (7.3 and above) only recognizes files ending with `.markdown`, `.mdown`, and `README.md` as makrdown files. If you want `<anything>.md` to be recognized, I recommend installing one of many markdown plugins available, such as [this one][tpope-markdown].
+
 etc.
 ---
 If you're curious, the code for the mini-server component for this plugin can be found at http://github.com/suan/instant-markdown-d. A plugin can easily be written for any editor to interface with the server to get the same functionality found here.
@@ -30,3 +36,4 @@ If you're curious, the code for the mini-server component for this plugin can be
 [ss]: http://dl.dropbox.com/u/28956267/instant-markdown-demo_thumb.gif  "Click for bigger preview"
 [ssbig]: http://dl.dropbox.com/u/28956267/instant-markdown-demo.gif
 [gfm]: http://github.github.com/github-flavored-markdown/
+[tpope-markdown]: https://github.com/tpope/vim-markdown
