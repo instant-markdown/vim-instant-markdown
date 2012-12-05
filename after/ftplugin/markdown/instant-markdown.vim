@@ -11,11 +11,10 @@ endfu
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
     call s:system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
-                \ ' '.s:bufGetContents(bufnr))
+                \ s:bufGetContents(bufnr))
 endfu
 
 function! s:startDaemon(initialMD)
-    " Add a space to input to avoid complaints
     call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
 endfu
 
