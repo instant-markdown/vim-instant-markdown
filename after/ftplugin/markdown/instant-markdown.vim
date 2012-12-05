@@ -1,4 +1,4 @@
-" # Utility Functions " {{{1
+" # Utility Functions
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
     " Add a space to input to avoid complaints
@@ -8,7 +8,7 @@ endfu
 
 function! s:startDaemon(initialMD)
     " Add a space to input to avoid complaints
-    call system("instant-markdown-d &>/dev/null &", ' '.a:initialMD)
+    call system("instant-markdown-d &>/dev/null &", a:initialMD)
 endfu
 
 function! s:initDict()
@@ -40,7 +40,7 @@ fu! s:myBufNr()
     return str2nr(expand('<abuf>'))
 endfu
 
-" # Functions called by autocmds " {{{1
+" # Functions called by autocmds
 "
 " ## push a new Markdown buffer into the system.
 "
@@ -84,7 +84,7 @@ fu! s:temperedRefresh()
     endif
 endfu
 
-" # Define the autocmds " {{{1
+" # Define the autocmds "
 aug instant-markdown
     au! * <buffer>
     au BufEnter <buffer> call s:refreshView()
@@ -92,6 +92,3 @@ aug instant-markdown
     au BufWinLeave <buffer> call s:popMarkdown()
     au BufwinEnter <buffer> call s:pushMarkdown()
 aug END
-
-" }}}1
-" vim: fdm=marker
