@@ -1,14 +1,22 @@
 " # Utility Functions
+" Simple system wrapper that ignores empty second args
+function! s:system(cmd, stdin)
+    if strlen(a:stdin) == 0
+        call system(a:cmd)
+    else
+        call system(a:cmd, a:stdin)
+    endif
+endfu
+
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
-    " Add a space to input to avoid complaints
-    call system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
+    call s:system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
                 \ ' '.s:bufGetContents(bufnr))
 endfu
 
 function! s:startDaemon(initialMD)
     " Add a space to input to avoid complaints
-    call system("instant-markdown-d &>/dev/null &", a:initialMD)
+    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
 endfu
 
 function! s:initDict()
