@@ -18,13 +18,17 @@ You first need to have Ruby with RubyGems, and node.js with npm installed. (In t
 
 Configuration
 -------------
-By default, vim-instant-markdown will update the display in realtime.  If that taxes your system, you can specify
+By default, vim-instant-markdown will update the display in realtime.  If that taxes your system too much, you can specify
 
 ```
 let g:instant_markdown_slow = 1
 ```
 
-before loading the plugin.  This will cause vim-instant-markdown to only refresh on the following events: `CursorHold`, `CursorHoldI`, `InsertLeave`, and `BufWrite`.
+before loading the plugin (for example place that in your `~/.vimrc`). This will cause vim-instant-markdown to only refresh on the following events:
+
+- No keys have been pressed for a while
+- A while after you leave insert mode
+- You save the file being edited
 
 Supported Platforms
 -------------------
