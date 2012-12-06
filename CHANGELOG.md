@@ -17,3 +17,10 @@ All these changes courtesy of @chreekat, THANKS!
 - Behavior when multiple markdown files are open has been improved
 - No more weird characters taking over the status/command bar while editing
 - Internals have been completely rewritten and are much more cleaner and adhere to vim script best practices
+
+### 0.0.5 (12-05-2012)
+These changes are _also_ courtesy of @chreekat!
+
+- Plugin no longer breaks vim mouse scrolling
+- No longer errors upon opening an empty markdown file
+- `instant_markdown_slow` option to update preview less frequently
