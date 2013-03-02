@@ -24,3 +24,8 @@ These changes are _also_ courtesy of @chreekat!
 - Plugin no longer breaks vim mouse scrolling
 - No longer errors upon opening an empty markdown file
 - `instant_markdown_slow` option to update preview less frequently
+
+### 0.0.6 (03-02-2013)
+All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them.
+
+- Fix for systems (such as Ubuntu, Debian) which use the `nodejs` executable instead of `node`.
