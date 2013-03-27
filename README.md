@@ -18,6 +18,8 @@ You first need to have Ruby with RubyGems, and node.js with npm installed. (In t
 
 Configuration
 -------------
+### g:instant_markdown_slow
+
 By default, vim-instant-markdown will update the display in realtime.  If that taxes your system too much, you can specify
 
 ```
@@ -29,6 +31,15 @@ before loading the plugin (for example place that in your `~/.vimrc`). This will
 - No keys have been pressed for a while
 - A while after you leave insert mode
 - You save the file being edited
+
+### g:instant_markdown_autostart
+By default, vim-instant-markdown will automatically launch the preview window when you open a markdown file. If you want to manually control this behavior, you can specify
+
+```
+let g:instant_markdown_autostart = 0
+```
+
+in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
 
 Supported Platforms
 -------------------

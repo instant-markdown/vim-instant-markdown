@@ -3,6 +3,10 @@ if !exists('g:instant_markdown_slow')
     let g:instant_markdown_slow = 0
 endif
 
+if !exists('g:instant_markdown_autostart')
+    let g:instant_markdown_autostart = 1
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -96,15 +100,36 @@ fu! s:temperedRefresh()
     endif
 endfu
 
-" # Define the autocmds "
-aug instant-markdown
-    au! * <buffer>
-    au BufEnter <buffer> call s:refreshView()
+fu! s:previewMarkdown()
+  call s:startDaemon(join(getline(1, '$'), "\n"))
+  aug instant-markdown
     if g:instant_markdown_slow
-        au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
+      au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
     else
-        au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
+      au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     endif
-    au BufWinLeave <buffer> call s:popMarkdown()
-    au BufwinEnter <buffer> call s:pushMarkdown()
-aug END
+    au BufWinLeave <buffer> call s:cleanUp()
+  aug END
+endfu
+
+fu! s:cleanUp()
+  call s:killDaemon()
+  au! instant-markdown * <buffer>
+endfu
+
+if g:instant_markdown_autostart
+    " # Define the autocmds "
+    aug instant-markdown
+        au! * <buffer>
+        au BufEnter <buffer> call s:refreshView()
+        if g:instant_markdown_slow
+          au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
+        else
+          au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
+        endif
+        au BufWinLeave <buffer> call s:popMarkdown()
+        au BufwinEnter <buffer> call s:pushMarkdown()
+    aug END
+else
+    command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+endif
