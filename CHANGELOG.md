@@ -29,3 +29,8 @@ These changes are _also_ courtesy of @chreekat!
 All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them.
 
 - Fix for systems (such as Ubuntu, Debian) which use the `nodejs` executable instead of `node`.
+
+### 0.0.7 (10-31-2013)
+thanks to @terryma!
+
+- Added option to only start previewing markdown on demand
