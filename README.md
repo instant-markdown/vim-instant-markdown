@@ -10,7 +10,8 @@ Installation
 ------------
 You first need to have Ruby with RubyGems, and node.js with npm installed. (In the future there might be a version which won't require node.js at all, making installation easier)
 
-- `[sudo] gem install redcarpet pygments.rb`
+- `[sudo] gem install pygments.rb`
+- If you're using Ruby 1.9.2 or later, `[sudo] gem install redcarpet`. Otherwise, `[sudo] gem install redcarpet -v 2.3.0`
 - `[sudo] npm -g install instant-markdown-d`
 - If you're on Linux, the `xdg-utils` package needs to be installed (is installed by default on Ubuntu).
 - Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or use pathogen.
