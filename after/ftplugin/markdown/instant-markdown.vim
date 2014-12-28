@@ -7,6 +7,14 @@ if !exists('g:instant_markdown_autostart')
     let g:instant_markdown_autostart = 1
 endif
 
+if !exists('g:instant_markdown_gc')
+    let g:instant_markdown_gc = 1
+endif
+
+if !exists('g:instant_markdown_finally_kill_daemon')
+    let g:instant_markdown_finally_kill_daemon = 1
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -24,7 +32,7 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    call s:system('pgrep -q -f "^$(which node) $(which instant-markdown-d)" || instant-markdown-d &>/dev/null &', a:initialMD)
 endfu
 
 function! s:initDict()
@@ -127,9 +135,20 @@ if g:instant_markdown_autostart
         else
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
-        au BufWinLeave <buffer> call s:popMarkdown()
         au BufwinEnter <buffer> call s:pushMarkdown()
     aug END
 else
     command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+endif
+
+if g:instant_markdown_gc
+    aug instant-markdown
+        au BufWinLeave <buffer> call s:popMarkdown()
+    aug END
+endif
+
+if g:instant_markdown_finally_kill_daemon
+    aug instant-markdown
+        au VimLeave * call s:cleanUp()
+    aug END
 endif

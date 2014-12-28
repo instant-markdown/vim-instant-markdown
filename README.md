@@ -43,6 +43,24 @@ let g:instant_markdown_autostart = 0
 
 in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
 
+### g:instant_markdown_gc (garbage collection)
+By default, vim-instant-markdown will destroy and create browser tabs when switching between markdown buffers. If you want to have a single persistent browser tab for all markdown buffers (even across multiple vim instances), you can specify
+
+```
+let g:instant_markdown_gc = 0
+```
+
+The most recently-active markdown buffer will always populate the browser tab. Note that this behavior occurs even across concurrent instances of vim, because only one instant-markdown-d daemon instance is possible.
+
+### g:instant_markdown_finally_kill_daemon
+By default, vim-instant-markdown automatically kill the daemon when all markdown buffers are closed. As a side effect, the browser tab is also closed. If you prefer the browser tab to stay open even after closing all markdown buffers (or vim itself), use
+
+```
+let g:instant_markdown_finally_kill_daemon = 0
+```
+
+Note that if you close the browser tab in this mode, you will have to manually browse to http://localhost:8090/ to get it back.
+
 Supported Platforms
 -------------------
 OSX and Unix/Linuxes*.
