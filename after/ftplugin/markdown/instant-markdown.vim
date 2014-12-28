@@ -24,7 +24,7 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    call s:system('pgrep -q -f "^$(which node) $(which instant-markdown-d)" || instant-markdown-d &>/dev/null &', a:initialMD)
 endfu
 
 function! s:initDict()
