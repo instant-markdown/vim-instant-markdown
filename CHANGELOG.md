@@ -39,5 +39,6 @@ thanks to @terryma!
 All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them. All thanks to the awesome work of @euclio!
 
 - Ruby dependencies (pygments.rb and redcarpet) are no longer required! `instant-markdown-d` is now the only dependency
+- Plugin should be _much_ more performant and stable. Should be able to edit at brisk typing speed without slowdowns or crashes.
 - Updated to the latest github styles!
   - Due to github not fully open-sourcing their current syntax highlighting pipeline, syntax highlighting colors are _slightly_ different.
