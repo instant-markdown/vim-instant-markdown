@@ -34,3 +34,10 @@ All changes for this release were made in the backend. Do `[sudo] npm -g update 
 thanks to @terryma!
 
 - Added option to only start previewing markdown on demand
+
+### 0.0.8 (01-17-2015)
+All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them. All thanks to the awesome work of @euclio!
+
+- Ruby dependencies (pygments.rb and redcarpet) are no longer required! `instant-markdown-d` is now the only dependency
+- Updated to the latest github styles!
+  - Due to github not fully open-sourcing their current syntax highlighting pipeline, syntax highlighting colors are _slightly_ different.

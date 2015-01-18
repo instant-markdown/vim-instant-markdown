@@ -8,13 +8,11 @@ As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while 
 
 Installation
 ------------
-You first need to have Ruby with RubyGems, and node.js with npm installed. (In the future there might be a version which won't require node.js at all, making installation easier)
+You first need to have node.js with npm installed.
 
-- `[sudo] gem install pygments.rb`
-- If you're using Ruby 1.9.2 or later, `[sudo] gem install redcarpet`. Otherwise, `[sudo] gem install redcarpet -v 2.3.0`
 - `[sudo] npm -g install instant-markdown-d`
 - If you're on Linux, the `xdg-utils` package needs to be installed (is installed by default on Ubuntu).
-- Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or use pathogen.
+- Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or follow your vim package manager's instructions.
 - Ensure you have the line `filetype plugin on` in your `.vimrc`
 - Open a markdown file in vim and enjoy!
 
