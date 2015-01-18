@@ -55,12 +55,8 @@ By default, vim (7.3 and above) only recognizes files ending with `.markdown`, `
 
 > It's not working!
 
-- Make sure all the dependencies are installed...
-  - Make sure `instant-markdown-d` was installed as a global module (e.g. using `npm -g install`)
-  - Make sure the ruby gems were installed under your default Ruby (i.e. if you're using RVM, use `gem install` and NOT `sudo gem install` as that might cause the gems to be installed under a non-RVM Ruby)
-- If you're on OSX, and are using zsh and rbenv/rvm...
-  - Make sure that Vim is using the correct version of ruby. From vim, if ```:!which ruby``` returns an unexpected ruby, then see here for a solution: https://github.com/dotphiles/dotzsh#mac-os-x.
-  - Another thing to try would be to add `set shell=bash\ -i` in your `.vimrc` to set interactive bash as the default vim shell. (See [this issue](http://github.com/suan/vim-instant-markdown/issues/41))
+- Make sure `instant-markdown-d` was installed as a global module (e.g. using `npm -g install`)
+- If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your `.vimrc` to set interactive bash as the default vim shell. (See [this issue](http://github.com/suan/vim-instant-markdown/issues/41))
 
 etc.
 ---
