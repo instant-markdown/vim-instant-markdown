@@ -13,6 +13,7 @@ You first need to have node.js with npm installed.
 - `[sudo] npm -g install instant-markdown-d`
 - If you're on Linux, the `xdg-utils` package needs to be installed (is installed by default on Ubuntu).
 - Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or follow your vim package manager's instructions.
+  - For the [Vundle package manager](https://github.com/gmarik/Vundle.vim), add the following to your `.vimrc`: `Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}`
 - Ensure you have the line `filetype plugin on` in your `.vimrc`
 - Open a markdown file in vim and enjoy!
 
