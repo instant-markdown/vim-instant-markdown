@@ -41,6 +41,14 @@ let g:instant_markdown_autostart = 0
 
 in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
 
+### g:instant_markdown_browser
+By default, vim-install-markdown will use the default browser. If you want to
+use an another browser, you can specify
+
+```
+let g:instant_markdown_browser = "google-chrome"
+```
+
 Supported Platforms
 -------------------
 OSX and Unix/Linuxes*.

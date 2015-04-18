@@ -24,7 +24,11 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    if exists('g:instant_markdown_browser')
+        call s:system("instant-markdown-d --browser=" . g:instant_markdown_browser . " &>/dev/null &", a:initialMD)
+    else
+        call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    endif
 endfu
 
 function! s:initDict()
