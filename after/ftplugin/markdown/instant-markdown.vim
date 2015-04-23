@@ -7,6 +7,10 @@ if !exists('g:instant_markdown_autostart')
     let g:instant_markdown_autostart = 1
 endif
 
+if !exists('g:instant_markdown_script')
+    let g:instant_markdown_script = ""
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -24,7 +28,9 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    call s:system("instant-markdown-d " .
+                 \ g:instant_markdown_script .
+                 \"&>/dev/null &", a:initialMD)
 endfu
 
 function! s:initDict()

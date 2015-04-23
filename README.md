@@ -22,7 +22,7 @@ Configuration
 
 By default, vim-instant-markdown will update the display in realtime.  If that taxes your system too much, you can specify
 
-```
+```vim
 let g:instant_markdown_slow = 1
 ```
 
@@ -35,11 +35,57 @@ before loading the plugin (for example place that in your `~/.vimrc`). This will
 ### g:instant_markdown_autostart
 By default, vim-instant-markdown will automatically launch the preview window when you open a markdown file. If you want to manually control this behavior, you can specify
 
-```
+```vim
 let g:instant_markdown_autostart = 0
 ```
 
 in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
+
+### g:instant_markdown_script
+(Currently only supported on OSX)
+
+The position and size of the preview page is browser- and OS-dependent and will
+be usually acceptable for the average use case.
+
+If you want instant-markdown-d to execute a script after establishing the
+connection to the preview page, you can set the path to a custom script:
+
+```vim
+let g:instant_markdown_script = "~/.vim/vim-instant_markdown_chrome.applescript"
+```
+
+in your .vimrc.
+
+If you use AppleScript, for instance, you have several opportunities for window
+resizing and positioning. The following script, for example, ensures that the
+preview page is opened in a new browser window and splits the screen with vim
+and Google Chrome on the left and right halves, respectively.
+
+```applescript
+tell application "Finder"
+    set _b to bounds of window of desktop
+    set _w to item 3 of _b
+    set _h to item 4 of _b
+end tell
+
+tell application "Google Chrome"
+    set tabs_ids to every tab in front window
+    repeat with the_tab in tabs_ids
+        set the_tab_url to URL of the_tab
+        if the_tab_url contains "localhost"
+            delete the_tab
+        end if
+    end repeat
+    tell (make new window)
+        set URL of active tab to "http://localhost:8090"
+    end tell
+    set bounds of front window to {_w/2, 0, _w, _h}
+end tell
+
+tell application "iTerm"
+    set bounds of front window to {0, 0, _w/2, _h}
+end
+```
 
 Supported Platforms
 -------------------
