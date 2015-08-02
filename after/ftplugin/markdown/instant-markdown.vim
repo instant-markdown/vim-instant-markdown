@@ -108,7 +108,7 @@ fu! s:previewMarkdown()
     else
       au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     endif
-    au BufWinLeave <buffer> call s:cleanUp()
+    au BufUnload <buffer> call s:cleanUp()
   aug END
 endfu
 
@@ -127,7 +127,7 @@ if g:instant_markdown_autostart
         else
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
-        au BufWinLeave <buffer> call s:popMarkdown()
+        au BufUnload <buffer> call s:popMarkdown()
         au BufwinEnter <buffer> call s:pushMarkdown()
     aug END
 else
