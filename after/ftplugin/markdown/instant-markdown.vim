@@ -18,7 +18,7 @@ function! s:system(cmd, stdin)
 endfu
 
 function! s:refreshView()
-    let bufnr = expand('<bufnr>')
+    let bufnr = s:myBufNr()
     call s:system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
                 \ s:bufGetContents(bufnr))
 endfu
