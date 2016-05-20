@@ -49,10 +49,6 @@ OSX and Unix/Linuxes*.
 
 FAQ
 ---
-> Why don't my `<bla>.md` files trigger this plugin?
-
-By default, vim (7.3 and above) only recognizes files ending with `.markdown`, `.mdown`, and `README.md` as markdown files. If you want `<anything>.md` to be recognized, I recommend installing one of many markdown plugins available, such as [this one][tpope-markdown].
-
 > It's not working!
 
 - Make sure `instant-markdown-d` was installed as a global module (e.g. using `npm -g install`)
