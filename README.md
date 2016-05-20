@@ -8,10 +8,13 @@ As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while 
 
 Installation
 ------------
-You first need to have node.js with npm installed.
+You first need to have node.js with npm installed. Then:
 
 - `[sudo] npm -g install instant-markdown-d`
-- If you're on Linux, the `xdg-utils` package needs to be installed (is installed by default on Ubuntu), as well as `curl` (not installed by default on Ubuntu).
+- If you're on Linux, ensure the following packages are installed:
+  - `xdg-utils`
+  - `curl`
+  - `nodejs-legacy` (for Debian-based systems)
 - Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or follow your vim package manager's instructions.
 - Ensure you have the line `filetype plugin on` in your `.vimrc`
 - Open a markdown file in vim and enjoy!
