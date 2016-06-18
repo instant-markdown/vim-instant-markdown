@@ -44,6 +44,30 @@ let g:instant_markdown_autostart = 0
 
 in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
 
+### g:instant_markdown_open_to_the_world
+By default, the server only listens on localhost. To make the server available to others in your network, edit your .vimrc and add
+
+```
+let g:instant_markdown_open_to_the_world = 1
+```
+
+Only use this setting on trusted networks!
+
+### g:instant_markdown_allow_unsafe_content
+By default, scripts are blocked. To allow scripts to run, edit your .vimrc and add
+
+```
+let g:instant_markdown_allow_unsafe_content = 1
+```
+
+### g:instant_markdown_allow_external_content
+By default, external resources such as images, stylesheets, frames and plugins are allowed.
+To block such content, edit your .vimrc and add
+
+```
+let g:instant_markdown_allow_external_content = 0
+```
+
 Supported Platforms
 -------------------
 OSX and Unix/Linuxes*.
