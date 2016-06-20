@@ -57,6 +57,10 @@ FAQ
 - Make sure `instant-markdown-d` was installed as a global module (e.g. using `npm -g install`)
 - If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your `.vimrc` to set interactive bash as the default vim shell. (See [this issue](http://github.com/suan/vim-instant-markdown/issues/41))
 
+> Why don't my `<bla>.md` files trigger this plugin?
+
+By default, vim versions before 7.4.480 only recognize files ending with `.markdown`, `.mdown`, and `README.md` as markdown files. If you want `<anything>.md` to be recognized, I recommend installing one of many markdown plugins available, such as [this one][tpope-markdown].
+
 etc.
 ---
 If you're curious, the code for the mini-server component for this plugin can be found at http://github.com/suan/instant-markdown-d. A plugin can easily be written for any editor to interface with the server to get the same functionality found here.
