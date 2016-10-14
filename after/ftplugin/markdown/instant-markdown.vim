@@ -7,6 +7,18 @@ if !exists('g:instant_markdown_autostart')
     let g:instant_markdown_autostart = 1
 endif
 
+if !exists('g:instant_markdown_open_to_the_world')
+    let g:instant_markdown_open_to_the_world = 0
+endif
+
+if !exists('g:instant_markdown_allow_unsafe_content')
+    let g:instant_markdown_allow_unsafe_content = 0
+endif
+
+if !exists('g:instant_markdown_allow_external_content')
+    let g:instant_markdown_allow_external_content = 1
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -24,7 +36,18 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+    let env = ''
+    if g:instant_markdown_open_to_the_world
+        let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
+    endif
+    if g:instant_markdown_allow_unsafe_content
+        let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+    endif
+    if !g:instant_markdown_allow_external_content
+        let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
+    endif
+
+    call s:system(env . "instant-markdown-d &>/dev/null &", a:initialMD)
 endfu
 
 function! s:initDict()
