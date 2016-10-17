@@ -154,7 +154,7 @@ fu! s:temperedRefresh()
 endfu
 
 fu! s:previewMarkdown()
-  call s:startDaemon(getline(1, '$')))
+  call s:startDaemon(getline(1, '$'))
   aug instant-markdown
     if g:instant_markdown_slow
       au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
