@@ -19,6 +19,10 @@ if !exists('g:instant_markdown_allow_external_content')
     let g:instant_markdown_allow_external_content = 1
 endif
 
+if !exists('g:instant_markdown_daemon_port')
+    let g:instant_markdown_daemon_port = 8090
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -61,7 +65,7 @@ endfu
 
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
-    call s:systemasync("curl -X PUT -T - http://localhost:8090",
+    call s:systemasync("curl -X PUT -T - http://localhost:".g:instant_markdown_daemon_port,
                 \ s:bufGetLines(bufnr))
 endfu
 
@@ -72,6 +76,9 @@ function! s:startDaemon(initialMDLines)
     endif
     if g:instant_markdown_allow_unsafe_content
         let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+    endif
+    if g:instant_markdown_daemon_port
+        let env .= 'INSTANT_MARKDOWN_DAEMON_PORT='.g:instant_markdown_daemon_port.' '
     endif
     if !g:instant_markdown_allow_external_content
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
@@ -97,7 +104,7 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call s:systemasync("curl -s -X DELETE http://localhost:8090", [])
+    call s:systemasync("curl -s -X DELETE http://localhost:".g:instant_markdown_daemon_port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
