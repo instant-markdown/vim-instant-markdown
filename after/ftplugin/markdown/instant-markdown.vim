@@ -78,7 +78,7 @@ function! s:startDaemon(initialMDLines)
         let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
     endif
     if g:instant_markdown_daemon_port
-        let env .= 'INSTANT_MARKDOWN_DAEMON_PORT='.g:instant_markdown_daemon_port.' '
+        let $INSTANT_MARKDOWN_DAEMON_PORT = g:instant_markdown_daemon_port
     endif
     if !g:instant_markdown_allow_external_content
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
@@ -161,7 +161,7 @@ fu! s:temperedRefresh()
 endfu
 
 fu! s:previewMarkdown()
-  call s:startDaemon(getline(1, '$')))
+  call s:startDaemon(getline(1, '$'))
   aug instant-markdown
     if g:instant_markdown_slow
       au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
