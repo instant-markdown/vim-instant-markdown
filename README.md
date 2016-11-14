@@ -93,8 +93,8 @@ etc.
 If you're curious, the code for the mini-server component for this plugin can be found at http://github.com/suan/instant-markdown-d. A plugin can easily be written for any editor to interface with the server to get the same functionality found here.
 
 
-[ss]: http://dl.dropbox.com/u/28956267/instant-markdown-demo_thumb.gif  "Click for bigger preview"
-[ssbig]: http://dl.dropbox.com/u/28956267/instant-markdown-demo.gif
+[ss]: https://raw.githubusercontent.com/suan/vim-instant-markdown/master/images/instant-markdown-demo-preview.gif  "Click for bigger preview"
+[ssbig]: https://raw.githubusercontent.com/suan/vim-instant-markdown/master/images/instant-markdown-demo.gif
 [gfm]: http://github.github.com/github-flavored-markdown/
 [curl]: http://curl.haxx.se/download.html
 [tpope-markdown]: https://github.com/tpope/vim-markdown
