@@ -89,6 +89,11 @@ FAQ
 By default, vim versions before 7.4.480 only recognize files ending with `.markdown`, `.mdown`, and `README.md` as markdown files. If you want `<anything>.md` to be recognized, I recommend installing one of many markdown plugins available, such as [this one][tpope-markdown].
 
 etc.
+
+> This doesn't work on OSX with zsh and rbenv/rvm!
+
+Make sure that Vim is using the correct version of ruby. If ```:!which ruby``` returns the default system ruby, then see here for a solution: https://github.com/dotphiles/dotzsh#mac-os-x.
+
 ---
 If you're curious, the code for the mini-server component for this plugin can be found at http://github.com/suan/instant-markdown-d. A plugin can easily be written for any editor to interface with the server to get the same functionality found here.
 
