@@ -69,6 +69,13 @@ To block such content, edit your .vimrc and add
 let g:instant_markdown_allow_external_content = 0
 ```
 
+### g:instant_markdown_logfile
+For troubleshooting, server startup and curl communication from Vim to the server can be logged into a file.
+
+```
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+```
+
 Supported Platforms
 -------------------
 OSX, Unix/Linuxes*, and Windows**.

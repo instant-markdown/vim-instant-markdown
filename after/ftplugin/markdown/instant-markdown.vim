@@ -19,6 +19,10 @@ if !exists('g:instant_markdown_allow_external_content')
     let g:instant_markdown_allow_external_content = 1
 endif
 
+if !exists('g:instant_markdown_logfile')
+    let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -36,7 +40,7 @@ function! s:systemasync(cmd, stdinLines)
     if has('win32') || has('win64')
         call s:winasync(a:cmd, a:stdinLines)
     else
-        let cmd = a:cmd . '&>/dev/null &'
+        let cmd = a:cmd . '&>>' . g:instant_markdown_logfile . ' &'
         call s:system(cmd, join(a:stdinLines, "\n"))
     endif
 endfu
@@ -56,7 +60,7 @@ function! s:winasync(cmd, stdinLines)
     else
         let command = a:cmd
     endif
-    exec 'silent !start /b cmd /c ' . command . ' > NUL'
+    exec 'silent !start /b cmd /c ' . command . ' >> ' . g:instant_markdown_logfile
 endfu
 
 function! s:refreshView()
