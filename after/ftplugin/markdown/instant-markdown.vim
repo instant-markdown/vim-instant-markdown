@@ -19,6 +19,10 @@ if !exists('g:instant_markdown_allow_external_content')
     let g:instant_markdown_allow_external_content = 1
 endif
 
+if !exists('g:instant_markdown_serve_folder_tree')
+    let g:instant_markdown_serve_folder_tree = 0
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -66,17 +70,22 @@ function! s:refreshView()
 endfu
 
 function! s:startDaemon(initialMDLines)
-    let env = ''
     if g:instant_markdown_open_to_the_world
-        let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
+        let $INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1
     endif
     if g:instant_markdown_allow_unsafe_content
-        let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+        let $INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1
     endif
     if !g:instant_markdown_allow_external_content
-        let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
+        let $INSTANT_MARKDOWN_BLOCK_EXTERNAL=1
     endif
-
+    if g:instant_markdown_serve_folder_tree
+        let $INSTANT_MARKDOWN_SERVE_FOLDER_TREE=1
+        let l:md_file_path = expand('%:p:h')
+        call s:systemasync("cd '" . l:md_file_path . "' && " . 'instant-markdown-d', 
+                      \ a:initialMDLines)
+        return
+    endif
     call s:systemasync('instant-markdown-d', a:initialMDLines)
 endfu
 

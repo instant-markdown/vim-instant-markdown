@@ -42,3 +42,13 @@ All changes for this release were made in the backend. Do `[sudo] npm -g update 
 - Plugin should be _much_ more performant and stable. Should be able to edit at brisk typing speed without slowdowns or crashes.
 - Updated to the latest github styles!
   - Due to github not fully open-sourcing their current syntax highlighting pipeline, syntax highlighting colors are _slightly_ different.
+
+### 0.0.9 (12-13-2017)
+Changes proposed by @twidxuga:
+
+- Implemented math rendering with Katex 0.8.3 (in instant-markdown-d). Note that a newer branch of markdown-it-katex was added as a dependency, since it works well with newer versions of Katex (master only goes up to 0.7.1).
+- It is now possible to server all files starting from the folder containing the markdown file being edited if the new option  `g:instant_markdown_serve_folder_tree = 0` is specified in a user's .vimrc/init.vim (default value is set to 0). This allows serving images, pdf files, svg files, etc. without restriction by format. 
+- Fixed issue (at least with Neovim and Linux) by which environment variables set in the vim plugin were not passed onto the instant-markdown-d server.
+- Re-factored all CSS and font files under the sames folder `imd_static` (Perhaps the Katex fonts and its CSS could be referenced from the node_modules directory in future, as an improvement)
+
+
