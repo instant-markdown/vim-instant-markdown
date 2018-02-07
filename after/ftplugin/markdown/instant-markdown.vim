@@ -68,13 +68,13 @@ endfu
 function! s:startDaemon(initialMDLines)
     let env = ''
     if g:instant_markdown_open_to_the_world
-        let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
+        let $INSTANT_MARKDOWN_OPEN_TO_THE_WORLD = 1
     endif
     if g:instant_markdown_allow_unsafe_content
-        let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+        let $INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT = 1
     endif
     if !g:instant_markdown_allow_external_content
-        let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
+        let $INSTANT_MARKDOWN_BLOCK_EXTERNAL = 1
     endif
 
     call s:systemasync('instant-markdown-d', a:initialMDLines)
