@@ -101,7 +101,13 @@ function! s:killDaemon()
 endfu
 
 function! s:bufGetLines(bufnr)
-  return getbufline(a:bufnr, 1, "$")
+  let lines = getbufline(a:bufnr, 1, "$")
+
+  " inject row marker
+  let row_num = line(".") - 1
+  let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+
+  return lines
 endfu
 
 " I really, really hope there's a better way to do this.
