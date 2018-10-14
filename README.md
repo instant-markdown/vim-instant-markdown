@@ -69,6 +69,14 @@ To block such content, edit your .vimrc and add
 let g:instant_markdown_allow_external_content = 0
 ```
 
+### g:instant_markdown_mathjax
+Renders TeX code embedded within markdown using MathJax. This option launches
+the node server as `instant-markdown-d --mathjax`.
+
+```
+let g:instant_markdown_mathjax = 1
+```
+
 Supported Platforms
 -------------------
 OSX, Unix/Linuxes*, and Windows**.
