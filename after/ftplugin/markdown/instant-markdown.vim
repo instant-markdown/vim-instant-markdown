@@ -38,7 +38,7 @@ function! s:systemasync(cmd, stdinLines)
     elseif has('nvim')
         let job_id = jobstart(a:cmd)
         call chansend(job_id, join(a:stdinLines, "\n"))
-        call chanclose(job_id,'stdin')
+        call chanclose(job_id, 'stdin')
     else
         let cmd = a:cmd . '&>/dev/null &'
         call s:system(cmd, join(a:stdinLines, "\n"))
