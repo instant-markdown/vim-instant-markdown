@@ -19,6 +19,10 @@ if !exists('g:instant_markdown_allow_external_content')
     let g:instant_markdown_allow_external_content = 1
 endif
 
+if !exists('g:instant_markdown_mathjax')
+    let g:instant_markdown_mathjax = 0
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -76,8 +80,13 @@ function! s:startDaemon(initialMDLines)
     if !g:instant_markdown_allow_external_content
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
     endif
+    if g:instant_markdown_mathjax
+        let s:imd_argv = ' --mathjax'
+    else
+        let s:imd_argv = ''
+    endif
 
-    call s:systemasync('instant-markdown-d', a:initialMDLines)
+    call s:systemasync('instant-markdown-d'.s:imd_argv, a:initialMDLines)
 endfu
 
 function! s:initDict()
@@ -101,7 +110,13 @@ function! s:killDaemon()
 endfu
 
 function! s:bufGetLines(bufnr)
-  return getbufline(a:bufnr, 1, "$")
+  let lines = getbufline(a:bufnr, 1, "$")
+
+  " inject row marker
+  let row_num = line(".") - 1
+  let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+
+  return lines
 endfu
 
 " I really, really hope there's a better way to do this.
