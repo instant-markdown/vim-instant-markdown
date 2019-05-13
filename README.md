@@ -16,20 +16,25 @@ Installation
 ------------
 **Quick start** (assuming you have all the necessary dependencies):
 
-- `[sudo] npm -g install instant-markdown-d`
+- Install the mini-server by running either:
+
+  - `[sudo] npm -g install instant-markdown-d` or
+
+  - `[sudo] npm -g install https://github.com/suan/instant-markdown-d.git#master`
+
 * Add the following to your `.vimrc`, depending on the plugin manager of your
-  choice.
+  choice:
 
   - [vim-plug][plug]
 
     ```vim
-    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}`
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
     ```
 
   - [Vundle][vundle]
 
     ```vim
-    Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}`
+    Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
     ```
 
 - Minimal default configuration:
