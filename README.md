@@ -145,8 +145,8 @@ written for any editor to interface with the server to get the same
 functionality found here._
 
 
-[ss]: http://dl.dropbox.com/u/28956267/instant-markdown-demo_thumb.gif  "Click for bigger preview"
-[ssbig]: http://dl.dropbox.com/u/28956267/instant-markdown-demo.gif
+[ss]: https://i.imgur.com/r7G6FNA.gif "Click for bigger preview"
+[ssbig]: https://i.imgur.com/4Fty7pw.gif
 [gfm]: http://github.github.com/github-flavored-markdown/
 [curl]: http://curl.haxx.se/download.html 
 [tpope-markdown]: https://github.com/tpope/vim-markdown 
