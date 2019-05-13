@@ -1,24 +1,61 @@
 vim-instant-markdown
 ====================
-Want to instantly preview finnicky markdown files, but don't want to leave your favorite editor, or have to do it in some crappy browser textarea? **vim-instant-markdown** is your friend! When you open a markdown file in vim, a browser window will open which shows the compiled markdown in real-time, and closes once you close the file in vim.
 
-As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while previewing are the same as those github uses!
+Want to instantly preview finicky markdown files, but don't want to leave your
+favourite editor, or have to do it in some crappy browser text area?
+**vim-instant-markdown** is your friend! When you open a markdown file in vim,
+a browser window will open which shows the compiled markdown in real-time, and
+closes once you close the file in vim.
+
+As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while
+previewing are the same as those GitHub uses!
 
 [![Screenshot][ss]][ssbig]
 
 Installation
 ------------
-You first need to have node.js with npm installed. Then:
+**Quick start** (assuming you have all the necessary dependencies):
 
 - `[sudo] npm -g install instant-markdown-d`
+* Add the following to your `.vimrc`, depending on the plugin manager of your
+  choice.
+
+  - [vim-plug][plug]
+
+    ```vim
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}`
+    ```
+
+  - [Vundle][vundle]
+
+    ```vim
+    Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}`
+    ```
+
+- Minimal default configuration:
+
+    ```vim
+    filetype plugin on
+    "Uncomment to override defaults:
+    "let g:instant_markdown_slow = 1
+    "let g:instant_markdown_autostart = 0
+    "let g:instant_markdown_open_to_the_world = 1 
+    "let g:instant_markdown_allow_unsafe_content = 1
+    "let g:instant_markdown_allow_external_content = 0
+    "let g:instant_markdown_mathjax = 1
+    ```
+
+**Detailed instructions**
+
 - If you're on Linux, ensure the following packages are installed:
   - `xdg-utils`
   - `curl`
   - `nodejs-legacy` (for Debian-based systems)
 - If you're on Windows, you will need into install [cURL][curl] and put it on your `%PATH%`.
-- Copy the `after/ftplugin/markdown/instant-markdown.vim` file from this repo into your `~/.vim/after/ftplugin/markdown/` (creating directories as necessary), or follow your vim package manager's instructions.
-  - For the [Vundle package manager](https://github.com/gmarik/Vundle.vim), add the following to your `.vimrc`: `Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}`
-- Ensure you have the line `filetype plugin on` in your `.vimrc`
+- If you do not use a plugin manager, copy the
+  [`after/ftplugin/markdown/instant-markdown.vim`](after/ftplugin/markdown/instant-markdown.vim)
+  file into `~/.vim/after/ftplugin/markdown/` (creating directories as
+  necessary), 
 - Open a markdown file in vim and enjoy!
 
 Configuration
@@ -27,7 +64,7 @@ Configuration
 
 By default, vim-instant-markdown will update the display in realtime.  If that taxes your system too much, you can specify
 
-```
+```vim
 let g:instant_markdown_slow = 1
 ```
 
@@ -40,17 +77,17 @@ before loading the plugin (for example place that in your `~/.vimrc`). This will
 ### g:instant_markdown_autostart
 By default, vim-instant-markdown will automatically launch the preview window when you open a markdown file. If you want to manually control this behavior, you can specify
 
-```
+```vim
 let g:instant_markdown_autostart = 0
 ```
 
-in your .vimrc. You can then manually trigger preview via the command ```:InstantMarkdownPreview```. This command is only available inside markdown buffers and when the autostart option is turned off.
+in your .vimrc. You can then manually trigger preview via the command `:InstantMarkdownPreview`. This command is only available inside markdown buffers and when the autostart option is turned off.
 
 ### g:instant_markdown_open_to_the_world
 By default, the server only listens on localhost. To make the server available to others in your network, edit your .vimrc and add
 
-```
-let g:instant_markdown_open_to_the_world = 1
+```vim
+let g:instant_markdown_open_to_the_world = 1 
 ```
 
 Only use this setting on trusted networks!
@@ -58,7 +95,7 @@ Only use this setting on trusted networks!
 ### g:instant_markdown_allow_unsafe_content
 By default, scripts are blocked. To allow scripts to run, edit your .vimrc and add
 
-```
+```vim
 let g:instant_markdown_allow_unsafe_content = 1
 ```
 
@@ -66,15 +103,15 @@ let g:instant_markdown_allow_unsafe_content = 1
 By default, external resources such as images, stylesheets, frames and plugins are allowed.
 To block such content, edit your .vimrc and add
 
-```
+```vim
 let g:instant_markdown_allow_external_content = 0
 ```
 
 ### g:instant_markdown_mathjax
-Renders TeX code embedded within markdown using MathJax. This option launches
-the node server as `instant-markdown-d --mathjax`.
+By default, no TeX code embedded within markdown would be rendered. This option
+uses MathJax and launches the node server as `instant-markdown-d --mathjax`.
 
-```
+```vim
 let g:instant_markdown_mathjax = 1
 ```
 
@@ -97,13 +134,16 @@ FAQ
 
 By default, vim versions before 7.4.480 only recognize files ending with `.markdown`, `.mdown`, and `README.md` as markdown files. If you want `<anything>.md` to be recognized, I recommend installing one of many markdown plugins available, such as [this one][tpope-markdown].
 
-etc.
----
-If you're curious, the code for the mini-server component for this plugin can be found at http://github.com/suan/instant-markdown-d. A plugin can easily be written for any editor to interface with the server to get the same functionality found here.
+_If you're curious, the code for the mini-server component for this plugin can
+be found at http://github.com/suan/instant-markdown-d. A plugin can easily be
+written for any editor to interface with the server to get the same
+functionality found here._
 
 
 [ss]: http://dl.dropbox.com/u/28956267/instant-markdown-demo_thumb.gif  "Click for bigger preview"
 [ssbig]: http://dl.dropbox.com/u/28956267/instant-markdown-demo.gif
 [gfm]: http://github.github.com/github-flavored-markdown/
-[curl]: http://curl.haxx.se/download.html
-[tpope-markdown]: https://github.com/tpope/vim-markdown
+[curl]: http://curl.haxx.se/download.html 
+[tpope-markdown]: https://github.com/tpope/vim-markdown 
+[plug]: https://github.com/junegunn/vim-plug
+[vundle]: https://github.com/gmarik/Vundle.vim
