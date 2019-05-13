@@ -7,6 +7,18 @@ if !exists('g:instant_markdown_autostart')
     let g:instant_markdown_autostart = 1
 endif
 
+if !exists('g:instant_markdown_open_to_the_world')
+    let g:instant_markdown_open_to_the_world = 0
+endif
+
+if !exists('g:instant_markdown_allow_unsafe_content')
+    let g:instant_markdown_allow_unsafe_content = 0
+endif
+
+if !exists('g:instant_markdown_allow_external_content')
+    let g:instant_markdown_allow_external_content = 1
+endif
+
 " # Utility Functions
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -17,14 +29,55 @@ function! s:system(cmd, stdin)
     endif
 endfu
 
-function! s:refreshView()
-    let bufnr = expand('<bufnr>')
-    call s:system("curl -X PUT -T - http://localhost:8090/ &>/dev/null &",
-                \ s:bufGetContents(bufnr))
+" Wrapper function to automatically execute the command asynchronously and
+" redirect output in a cross-platform way. Note that stdin must be passed as a
+" List of lines.
+function! s:systemasync(cmd, stdinLines)
+    if has('win32') || has('win64')
+        call s:winasync(a:cmd, a:stdinLines)
+    else
+        let cmd = a:cmd . '&>/dev/null &'
+        call s:system(cmd, join(a:stdinLines, "\n"))
+    endif
 endfu
 
-function! s:startDaemon(initialMD)
-    call s:system("instant-markdown-d &>/dev/null &", a:initialMD)
+" Executes a system command asynchronously on Windows. The List stdinLines will
+" be concatenated and passed as stdin to the command. If the List is empty,
+" stdin will also be empty.
+function! s:winasync(cmd, stdinLines)
+    " To execute a command asynchronously on windows, the script must use the
+    " "!start" command. However, stdin can't be passed to this command like
+    " system(). Instead, the lines are saved to a file and then piped into the
+    " command.
+    if len(a:stdinLines)
+        let tmpfile = tempname()
+        call writefile(a:stdinLines, tmpfile)
+        let command = 'type ' . tmpfile . ' | ' . a:cmd
+    else
+        let command = a:cmd
+    endif
+    exec 'silent !start /b cmd /c ' . command . ' > NUL'
+endfu
+
+function! s:refreshView()
+    let bufnr = expand('<bufnr>')
+    call s:systemasync("curl -X PUT -T - http://localhost:8090",
+                \ s:bufGetLines(bufnr))
+endfu
+
+function! s:startDaemon(initialMDLines)
+    let env = ''
+    if g:instant_markdown_open_to_the_world
+        let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
+    endif
+    if g:instant_markdown_allow_unsafe_content
+        let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+    endif
+    if !g:instant_markdown_allow_external_content
+        let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
+    endif
+
+    call s:systemasync('instant-markdown-d', a:initialMDLines)
 endfu
 
 function! s:initDict()
@@ -44,11 +97,11 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call system("curl -s -X DELETE http://localhost:8090/ &>/dev/null &")
+    call s:systemasync("curl -s -X DELETE http://localhost:8090", [])
 endfu
 
-function! s:bufGetContents(bufnr)
-  return join(getbufline(a:bufnr, 1, "$"), "\n")
+function! s:bufGetLines(bufnr)
+  return getbufline(a:bufnr, 1, "$")
 endfu
 
 " I really, really hope there's a better way to do this.
@@ -67,7 +120,7 @@ fu! s:pushMarkdown()
     let bufnr = s:myBufNr()
     call s:initDict()
     if len(s:buffers) == 0
-        call s:startDaemon(s:bufGetContents(bufnr))
+        call s:startDaemon(s:bufGetLines(bufnr))
     endif
     call s:pushBuffer(bufnr)
     let b:changedtickLast = b:changedtick
@@ -101,7 +154,7 @@ fu! s:temperedRefresh()
 endfu
 
 fu! s:previewMarkdown()
-  call s:startDaemon(join(getline(1, '$'), "\n"))
+  call s:startDaemon(getline(1, '$'))
   aug instant-markdown
     if g:instant_markdown_slow
       au CursorHold,BufWrite,InsertLeave <buffer> call s:temperedRefresh()
