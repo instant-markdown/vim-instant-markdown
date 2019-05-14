@@ -204,4 +204,5 @@ if g:instant_markdown_autostart
     aug END
 else
     command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+    command! -buffer InstantMarkdownStop call s:cleanUp()
 endif
