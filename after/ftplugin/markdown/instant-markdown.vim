@@ -85,12 +85,12 @@ function! s:startDaemon(initialMDLines)
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
     endif
     if g:instant_markdown_mathjax
-        let s:imd_argv = ' --mathjax'
+        let s:argv = ' --mathjax'
     else
-        let s:imd_argv = ''
+        let s:argv = ''
     endif
 
-    call s:systemasync('instant-markdown-d'.s:imd_argv, a:initialMDLines)
+    call s:systemasync(env.'instant-markdown-d'.s:argv, a:initialMDLines)
 endfu
 
 function! s:initDict()
@@ -180,7 +180,7 @@ fu! s:previewMarkdown()
     else
       au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     endif
-    au BufWinLeave <buffer> call s:cleanUp()
+    au BufUnload <buffer> call s:cleanUp()
   aug END
 endfu
 
@@ -199,7 +199,7 @@ if g:instant_markdown_autostart
         else
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
-        au BufWinLeave <buffer> call s:popMarkdown()
+        au BufUnload <buffer> call s:popMarkdown()
         au BufwinEnter <buffer> call s:pushMarkdown()
     aug END
 else
