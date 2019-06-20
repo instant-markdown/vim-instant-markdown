@@ -1,4 +1,6 @@
 *vim-instant-markdown.txt* - Last change: 2019/06/20
+*vim-instant-markdown*
+*instant-markdown*
 
 ================================================================================
 CONTENTS                                           *vim-instant-markdown-contents*
@@ -41,7 +43,7 @@ Quick start (assuming you have all the necessary dependencies):
 <
     or
 >
-      [sudo] npm -g install instant-markdown-d
+      [sudo] npm -g install https://github.com/suan/instant-markdown-d.git#master
 <
 *   Add the following to your `.vimrc`, depending on the plugin manager of your
     choice:
