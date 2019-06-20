@@ -1,19 +1,21 @@
 *vim-instant-markdown.txt* - Last change: 2019/06/20
 
 ================================================================================
-CONTENTS                                           vim-instant-markdown-contents
+CONTENTS                                           *vim-instant-markdown-contents*
 
-1.  Introduction...............................|vim-instant-markdown-introduction|
-    1.1. Installation..........................|vim-instant-markdown-installation|
-    1.2. Configuration........................|vim-instant-markdown-configuration|
-        1.2.1. g:instant_markdown_slow...................|g:instant_markdown_slow|
-        1.2.2. g:instant_markdown_autostart........|g:instant_markdown_autostart|
-        1.2.3. g:instant_markdown_open_to_the_world.|g:instant_markdown_open_to_the_world|
-        1.2.4. g:instant_markdown_allow_unsafe_content.|g:instant_markdown_allow_unsafe_content|
-        1.2.5. g:instant_markdown_allow_external_content.|g:instant_markdown_allow_external_content|
-        1.2.6. g:instant_markdown_mathjax.............|g:instant_markdown_mathjax|
-    1.3. Supported Platforms............|vim-instant-markdown-supported_platforms|
-    1.4. FAQ............................................|vim-instant-markdown-faq|
+1. Introduction...............................|vim-instant-markdown-introduction|
+2. Installation...............................|vim-instant-markdown-installation|
+3. Configuration.............................|vim-instant-markdown-configuration|
+   3.1. g:instant_markdown_slow.........................|g:instant_markdown_slow|
+   3.2. g:instant_markdown_autostart...............|g:instant_markdown_autostart|
+        Manual start....................................|:InstantMarkdownPreview|
+        Manual stop........................................|:InstantMarkdownStop|
+   3.3. g:instant_markdown_open_to_the_world.|g:instant_markdown_open_to_the_world|
+   3.4. g:instant_markdown_allow_unsafe_content.|g:instant_markdown_allow_unsafe_content|
+   3.5. g:instant_markdown_allow_external_content.|g:instant_markdown_allow_external_content|
+   3.6. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
+4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
+5. FAQ.................................................|vim-instant-markdown-faq|
 
 ================================================================================
 1. INTRODUCTION                               *vim-instant-markdown-introduction*
@@ -29,7 +31,7 @@ As a bonus, github-flavored-markdown
 used while previewing are the same as those GitHub uses!
 
 --------------------------------------------------------------------------------
-1.1. INSTALLATION                              *vim-instant-markdown-installation*
+2. INSTALLATION                               *vim-instant-markdown-installation*
 
 Quick start (assuming you have all the necessary dependencies):
 
@@ -79,8 +81,9 @@ Detailed instructions
 -   Open a markdown file in vim and enjoy!
 
 --------------------------------------------------------------------------------
-1.2 CONFIGURATION                            *vim-instant-markdown-configuration*
+3. CONFIGURATION                            *vim-instant-markdown-configuration*
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_SLOW                                *g:instant_markdown_slow*
 
 By default, vim-instant-markdown will update the display in realtime.  If that
@@ -96,7 +99,10 @@ will cause vim-instant-markdown to only refresh on the following events:
 *   A while after you leave insert mode
 *   You save the file being edited
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_AUTOSTART                       *g:instant_markdown_autostart*
+MANUAL START                                       *:InstantMarkdownPreview*
+MANUAL STOP                                        *:InstantMarkdownStop*
 
 By default, vim-instant-markdown will automatically launch the preview window
 when you open a markdown file. If you want to manually control this behavior,
@@ -104,12 +110,12 @@ you can specify
 >
     let g:instant_markdown_autostart = 0
 <
-
 in your .vimrc. You can then manually trigger preview via the command
 `:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`. These
 commands are only available inside markdown buffers and when the autostart
 option is turned off.
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_OPEN_TO_THE_WORLD       *g:instant_markdown_open_to_the_world*
 
 By default, the server only listens on localhost. To make the server available
@@ -120,6 +126,7 @@ to others in your network, edit your .vimrc and add
 
 Only use this setting on trusted networks!
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT *g:instant_markdown_allow_unsafe_content*
 
 By default, scripts are blocked. To allow scripts to run, edit your .vimrc and
@@ -128,6 +135,7 @@ add
     let g:instant_markdown_allow_unsafe_content = 1
 <
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_ALLOW_EXTERNAL_CONTENT *g:instant_markdown_allow_external_content*
 
 By default, external resources such as images, stylesheets, frames and plugins
@@ -136,6 +144,7 @@ are allowed.  To block such content, edit your .vimrc and add
     let g:instant_markdown_allow_external_content = 0
 <
 
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_MATHJAX                           *g:instant_markdown_mathjax*
 
 By default, no TeX code embedded within markdown would be rendered. This option
@@ -145,7 +154,7 @@ uses MathJax and launches the node server as .
 <
 
 --------------------------------------------------------------------------------
-1.3. SUPPORTED PLATFORMS                 *vim-instant-markdown-supported_platforms*
+4. SUPPORTED PLATFORMS                 *vim-instant-markdown-supported_platforms*
 
 OSX, Unix/Linuxes*, and Windows**.
 
@@ -159,7 +168,7 @@ OSX, Unix/Linuxes*, and Windows**.
     `g:instant_markdown_slow`, you might experience performance issues.
 
 --------------------------------------------------------------------------------
-1.4. FAQ                                               *vim-instant-markdown-faq*
+5. FAQ                                               *vim-instant-markdown-faq*
 >
     It's not working!
 <
