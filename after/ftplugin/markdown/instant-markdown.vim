@@ -95,7 +95,7 @@ function! s:startDaemon(initialMDLines)
         let argv .= ' --port '.g:instant_markdown_port
     endif
 
-    call s:systemasync(env.'instant-markdown-d'.s:argv, a:initialMDLines)
+    call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
 endfu
 
 function! s:initDict()
