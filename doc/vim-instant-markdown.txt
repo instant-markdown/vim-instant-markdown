@@ -162,7 +162,7 @@ By default, browser is detected by `instant-markdown-d` depending on the OS.
  you can set something like
 >
     let g:instant_markdown_browser = "firefox --new-window"
-
+<
 New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
