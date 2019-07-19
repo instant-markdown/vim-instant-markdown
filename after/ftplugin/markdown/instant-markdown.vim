@@ -75,6 +75,7 @@ endfu
 
 function! s:startDaemon(initialMDLines)
     let env = ''
+    let argv = ''
     if g:instant_markdown_open_to_the_world
         let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
     endif
@@ -85,12 +86,16 @@ function! s:startDaemon(initialMDLines)
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
     endif
     if g:instant_markdown_mathjax
-        let s:argv = ' --mathjax'
-    else
-        let s:argv = ''
+        let argv .= ' --mathjax'
+    endif
+    if exists('g:instant_markdown_browser')
+        let argv .= ' --browser '.g:instant_markdown_browser
+    endif
+    if exists('g:instant_markdown_port')
+        let argv .= ' --port '.g:instant_markdown_port
     endif
 
-    call s:systemasync(env.'instant-markdown-d'.s:argv, a:initialMDLines)
+    call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
 endfu
 
 function! s:initDict()
@@ -110,7 +115,12 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call s:systemasync("curl -s -X DELETE http://localhost:8090", [])
+    if exists('g:instant_markdown_port')
+        let port = g:instant_markdown_port
+    else
+        let port = 8090
+    endif
+    call s:systemasync("curl -s -X DELETE http://localhost:".port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
