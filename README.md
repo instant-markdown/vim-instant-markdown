@@ -44,7 +44,7 @@ Installation
     "Uncomment to override defaults:
     "let g:instant_markdown_slow = 1
     "let g:instant_markdown_autostart = 0
-    "let g:instant_markdown_open_to_the_world = 1 
+    "let g:instant_markdown_open_to_the_world = 1
     "let g:instant_markdown_allow_unsafe_content = 1
     "let g:instant_markdown_allow_external_content = 0
     "let g:instant_markdown_mathjax = 1
@@ -60,7 +60,7 @@ Installation
 - If you do not use a plugin manager, copy the
   [`after/ftplugin/markdown/instant-markdown.vim`](after/ftplugin/markdown/instant-markdown.vim)
   file into `~/.vim/after/ftplugin/markdown/` (creating directories as
-  necessary), 
+  necessary),
 - Open a markdown file in vim and enjoy!
 
 Configuration
@@ -95,7 +95,7 @@ option is turned off.
 By default, the server only listens on localhost. To make the server available to others in your network, edit your .vimrc and add
 
 ```vim
-let g:instant_markdown_open_to_the_world = 1 
+let g:instant_markdown_open_to_the_world = 1
 ```
 
 Only use this setting on trusted networks!
@@ -122,6 +122,27 @@ uses MathJax and launches the node server as `instant-markdown-d --mathjax`.
 ```vim
 let g:instant_markdown_mathjax = 1
 ```
+
+New in version `instant-markdown-d==0.2.0`
+
+### g:instant_markdown_browser
+By default, browser is detected by `instant-markdown-d` depending on the OS.
+Starting with version `instant-markdown-d>=0.2.0`, you can set something like
+
+```vim
+let g:instant_markdown_browser = "firefox --new-window"
+```
+
+New in version `instant-markdown-d==0.2.0`
+
+### g:instant_markdown_port
+Choose a custom port instead of the default `8090`.
+
+```vim
+let g:instant_markdown_port = 8888
+```
+
+New in version `instant-markdown-d==0.2.0`
 
 Supported Platforms
 -------------------
@@ -151,7 +172,7 @@ functionality found here._
 [ss]: https://i.imgur.com/r7G6FNA.gif "Click for bigger preview"
 [ssbig]: https://i.imgur.com/4Fty7pw.gif
 [gfm]: http://github.github.com/github-flavored-markdown/
-[curl]: http://curl.haxx.se/download.html 
-[tpope-markdown]: https://github.com/tpope/vim-markdown 
+[curl]: http://curl.haxx.se/download.html
+[tpope-markdown]: https://github.com/tpope/vim-markdown
 [plug]: https://github.com/junegunn/vim-plug
 [vundle]: https://github.com/gmarik/Vundle.vim
