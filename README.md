@@ -18,9 +18,11 @@ Installation
 
 - Install the mini-server by running either:
 
-  - `[sudo] npm -g install instant-markdown-d` or
+  - `[sudo] npm -g install instant-markdown-d`
 
-  - `[sudo] npm -g install https://github.com/suan/instant-markdown-d.git#master`
+or pre-release version
+
+- `[sudo] npm -g install instant-markdown-d@next`
 
 * Add the following to your `.vimrc`, depending on the plugin manager of your
   choice:
