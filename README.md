@@ -47,6 +47,8 @@ Installation
     "let g:instant_markdown_allow_unsafe_content = 1
     "let g:instant_markdown_allow_external_content = 0
     "let g:instant_markdown_mathjax = 1
+    "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+    "let g:instant_markdown_autoscroll = 0
     ```
 
 **Detailed instructions**
@@ -158,6 +160,8 @@ edit your .vimrc and add
 ```vim
 let g:instant_markdown_autoscroll = 0
 ```
+
+New in version `instant-markdown-d==0.2.0`
 
 Supported Platforms
 -------------------
