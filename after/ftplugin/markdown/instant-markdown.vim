@@ -30,6 +30,10 @@ elseif filereadable(g:instant_markdown_logfile)
     call writefile([''], g:instant_markdown_logfile)
 endif
 
+if !exists('g:instant_markdown_autoscroll')
+    let g:instant_markdown_autoscoll = 1
+endif
+
 
 " # Utility Functions
 let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
@@ -136,9 +140,11 @@ endfu
 function! s:bufGetLines(bufnr)
   let lines = getbufline(a:bufnr, 1, "$")
 
-  " inject row marker
-  let row_num = line(".") - 1
-  let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+  if g:instant_markdown_autoscoll
+    " inject row marker
+    let row_num = line(".") - 1
+    let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+  endif
 
   return lines
 endfu

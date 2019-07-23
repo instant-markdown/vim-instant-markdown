@@ -19,6 +19,7 @@ CONTENTS                                           *vim-instant-markdown-content
    3.7. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
    3.7. g:instant_markdown_browser...................|g:instant_markdown_browser|
    3.8. g:instant_markdown_port......................|g:instant_markdown_port|
+   3.9. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
 4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
 5. FAQ.................................................|vim-instant-markdown-faq|
 
@@ -171,6 +172,7 @@ New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_BROWSER                        *g:instant_markdown_browser*
+
 By default, browser is detected by `instant-markdown-d` depending on the OS.
  you can set something like
 >
@@ -179,10 +181,22 @@ By default, browser is detected by `instant-markdown-d` depending on the OS.
 New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
- G:INSTANT_MARKDOWN_PORT                             *g:instant_markdown_port*
+G:INSTANT_MARKDOWN_PORT                             *g:instant_markdown_port*
+
 Choose a custom port instead of the default `8090`.
 >
     let g:instant_markdown_port = 8888
+<
+New in version `instant-markdown-d==0.2.0`
+
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_AUTOSCROLL                 *g:instant_markdown_autoscroll*
+
+By default, with version `instant-markdown-d>=0.2.0`, the live preview
+auto-scrolls to where your cursor is positioned.  To disable this behaviour,
+edit your .vimrc and add
+>
+    let g:instant_markdown_autoscroll = 8888
 <
 New in version `instant-markdown-d==0.2.0`
 
