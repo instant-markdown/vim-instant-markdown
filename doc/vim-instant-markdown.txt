@@ -15,7 +15,10 @@ CONTENTS                                           *vim-instant-markdown-content
    3.3. g:instant_markdown_open_to_the_world.|g:instant_markdown_open_to_the_world|
    3.4. g:instant_markdown_allow_unsafe_content.|g:instant_markdown_allow_unsafe_content|
    3.5. g:instant_markdown_allow_external_content.|g:instant_markdown_allow_external_content|
-   3.6. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
+   3.6. g:instant_markdown_logfile...................|g:instant_markdown_logfile|
+   3.7. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
+   3.7. g:instant_markdown_browser...................|g:instant_markdown_browser|
+   3.8. g:instant_markdown_port......................|g:instant_markdown_port|
 4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
 5. FAQ.................................................|vim-instant-markdown-faq|
 
@@ -65,6 +68,7 @@ Quick start (assuming you have all the necessary dependencies):
         "let g:instant_markdown_allow_unsafe_content = 1
         "let g:instant_markdown_allow_external_content = 0
         "let g:instant_markdown_mathjax = 1
+        "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 <
 
 Detailed instructions
@@ -144,6 +148,15 @@ By default, external resources such as images, stylesheets, frames and plugins
 are allowed.  To block such content, edit your .vimrc and add
 >
     let g:instant_markdown_allow_external_content = 0
+<
+
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_LOGFILE                           *g:instant_markdown_logfile*
+
+For troubleshooting, server startup and curl communication from Vim to the
+server can be logged into a file.
+>
+    let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 <
 
 ------------------------------------------------------------------------------
