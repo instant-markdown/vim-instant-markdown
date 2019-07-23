@@ -54,7 +54,7 @@ Installation
 - If you're on Linux, ensure the following packages are installed:
   - `xdg-utils`
   - `curl`
-  - `nodejs-legacy` (for Debian-based systems)
+  - `nodejs`
 - If you're on Windows, you will need into install [cURL][curl] and put it on your `%PATH%`.
 - If you do not use a plugin manager, copy the
   [`after/ftplugin/markdown/instant-markdown.vim`](after/ftplugin/markdown/instant-markdown.vim)
