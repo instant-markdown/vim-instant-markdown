@@ -19,6 +19,10 @@ if !exists('g:instant_markdown_allow_external_content')
     let g:instant_markdown_allow_external_content = 1
 endif
 
+if !exists('g:instant_markdown_mathjax')
+    let g:instant_markdown_mathjax = 0
+endif
+
 if !exists('g:instant_markdown_logfile')
     let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
 elseif filereadable(g:instant_markdown_logfile)
