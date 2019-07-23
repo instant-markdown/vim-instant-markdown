@@ -114,6 +114,13 @@ To block such content, edit your .vimrc and add
 let g:instant_markdown_allow_external_content = 0
 ```
 
+### g:instant_markdown_logfile
+For troubleshooting, server startup and curl communication from Vim to the server can be logged into a file.
+
+```
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+```
+
 ### g:instant_markdown_mathjax
 By default, no TeX code embedded within markdown would be rendered. This option
 uses MathJax and launches the node server as `instant-markdown-d --mathjax`.
