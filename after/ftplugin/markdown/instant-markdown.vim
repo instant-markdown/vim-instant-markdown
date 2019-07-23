@@ -39,6 +39,10 @@ endfu
 function! s:systemasync(cmd, stdinLines)
     if has('win32') || has('win64')
         call s:winasync(a:cmd, a:stdinLines)
+    elseif has('nvim')
+        let job_id = jobstart(a:cmd)
+        call chansend(job_id, join(a:stdinLines, "\n"))
+        call chanclose(job_id, 'stdin')
     else
         let cmd = a:cmd . '&>>' . g:instant_markdown_logfile . ' &'
         call s:system(cmd, join(a:stdinLines, "\n"))
@@ -71,6 +75,7 @@ endfu
 
 function! s:startDaemon(initialMDLines)
     let env = ''
+    let argv = ''
     if g:instant_markdown_open_to_the_world
         let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
     endif
@@ -80,8 +85,17 @@ function! s:startDaemon(initialMDLines)
     if !g:instant_markdown_allow_external_content
         let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
     endif
+    if g:instant_markdown_mathjax
+        let argv .= ' --mathjax'
+    endif
+    if exists('g:instant_markdown_browser')
+        let argv .= ' --browser '.g:instant_markdown_browser
+    endif
+    if exists('g:instant_markdown_port')
+        let argv .= ' --port '.g:instant_markdown_port
+    endif
 
-    call s:systemasync('instant-markdown-d', a:initialMDLines)
+    call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
 endfu
 
 function! s:initDict()
@@ -101,11 +115,22 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call s:systemasync("curl -s -X DELETE http://localhost:8090", [])
+    if exists('g:instant_markdown_port')
+        let port = g:instant_markdown_port
+    else
+        let port = 8090
+    endif
+    call s:systemasync("curl -s -X DELETE http://localhost:".port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
-  return getbufline(a:bufnr, 1, "$")
+  let lines = getbufline(a:bufnr, 1, "$")
+
+  " inject row marker
+  let row_num = line(".") - 1
+  let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+
+  return lines
 endfu
 
 " I really, really hope there's a better way to do this.
@@ -165,7 +190,7 @@ fu! s:previewMarkdown()
     else
       au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
     endif
-    au BufWinLeave <buffer> call s:cleanUp()
+    au BufUnload <buffer> call s:cleanUp()
   aug END
 endfu
 
@@ -184,9 +209,10 @@ if g:instant_markdown_autostart
         else
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
-        au BufWinLeave <buffer> call s:popMarkdown()
+        au BufUnload <buffer> call s:popMarkdown()
         au BufwinEnter <buffer> call s:pushMarkdown()
     aug END
 else
     command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+    command! -buffer InstantMarkdownStop call s:cleanUp()
 endif
