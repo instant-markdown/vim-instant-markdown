@@ -150,6 +150,15 @@ let g:instant_markdown_port = 8888
 
 New in version `instant-markdown-d==0.2.0`
 
+### g:instant_markdown_autoscroll
+By default, with version `instant-markdown-d>=0.2.0`, the live preview
+auto-scrolls to where your cursor is positioned.  To disable this behaviour,
+edit your .vimrc and add
+
+```vim
+let g:instant_markdown_autoscroll = 0
+```
+
 Supported Platforms
 -------------------
 OSX, Unix/Linuxes*, and Windows**.
