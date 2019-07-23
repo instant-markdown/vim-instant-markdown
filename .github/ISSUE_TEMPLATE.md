@@ -18,9 +18,16 @@ console output here:
 
 ```
 
-## Generate logfiles if appropriate
+## Generate log files (required)
 
- 1. minimal `~/.vimrc` or `~/.config/nvim/init.vim` where variables for `vim-instant-markdown` defined
+```
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+```
+
+ 1. Add the above in your `~/.vimrc` or `~/.config/nvim/init.vim`. Modify the
+    path if needed and generate the log file.
+ 1. Minimal `~/.vimrc` or `~/.config/nvim/init.vim` where variables for
+    `vim-instant-markdown` defined
  1. `debug.html`
 
 ## Steps to reproduce the issue (required)

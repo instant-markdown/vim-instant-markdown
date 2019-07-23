@@ -21,9 +21,14 @@ endif
 
 if !exists('g:instant_markdown_logfile')
     let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
+elseif filereadable(g:instant_markdown_logfile)
+    "Truncate the log file
+    call writefile([''], g:instant_markdown_logfile)
 endif
 
+
 " # Utility Functions
+let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
     if strlen(a:stdin) == 0
@@ -37,14 +42,15 @@ endfu
 " redirect output in a cross-platform way. Note that stdin must be passed as a
 " List of lines.
 function! s:systemasync(cmd, stdinLines)
+    let cmd = a:cmd . s:shell_redirect
     if has('win32') || has('win64')
-        call s:winasync(a:cmd, a:stdinLines)
+        call s:winasync(cmd, a:stdinLines)
     elseif has('nvim')
-        let job_id = jobstart(a:cmd)
+        let job_id = jobstart(cmd)
         call chansend(job_id, join(a:stdinLines, "\n"))
         call chanclose(job_id, 'stdin')
     else
-        let cmd = a:cmd . '&>>' . g:instant_markdown_logfile . ' &'
+        let cmd = cmd . ' &'
         call s:system(cmd, join(a:stdinLines, "\n"))
     endif
 endfu
@@ -64,7 +70,7 @@ function! s:winasync(cmd, stdinLines)
     else
         let command = a:cmd
     endif
-    exec 'silent !start /b cmd /c ' . command . ' >> ' . g:instant_markdown_logfile
+    exec 'silent !start /b cmd /c ' . command
 endfu
 
 function! s:refreshView()
