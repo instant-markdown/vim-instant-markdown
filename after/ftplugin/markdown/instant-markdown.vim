@@ -34,6 +34,9 @@ if !exists('g:instant_markdown_autoscroll')
     let g:instant_markdown_autoscoll = 1
 endif
 
+if !exists('g:instant_markdown_port')
+    let g:instant_markdown_port = 8090
+endif
 
 " # Utility Functions
 let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
@@ -83,7 +86,7 @@ endfu
 
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
-    call s:systemasync("curl -X PUT -T - http://localhost:8090",
+    call s:systemasync("curl -X PUT -T - http://localhost:".g:instant_markdown_port,
                 \ s:bufGetLines(bufnr))
 endfu
 
@@ -105,9 +108,8 @@ function! s:startDaemon(initialMDLines)
     if exists('g:instant_markdown_browser')
         let argv .= ' --browser '.g:instant_markdown_browser
     endif
-    if exists('g:instant_markdown_port')
-        let argv .= ' --port '.g:instant_markdown_port
-    endif
+
+    let argv .= ' --port '.g:instant_markdown_port
 
     call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
 endfu
@@ -129,12 +131,7 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    if exists('g:instant_markdown_port')
-        let port = g:instant_markdown_port
-    else
-        let port = 8090
-    endif
-    call s:systemasync("curl -s -X DELETE http://localhost:".port, [])
+    call s:systemasync("curl -s -X DELETE http://localhost:".g:instant_markdown_port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
