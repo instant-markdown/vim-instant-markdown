@@ -131,7 +131,7 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call s:systemasync("curl -s -X DELETE http://localhost:".g:instant_markdown_port, [])
+    call s:systemasync("curl -X DELETE -w 'exit status: %{http_code}' http://localhost:".g:instant_markdown_port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
