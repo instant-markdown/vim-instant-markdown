@@ -87,10 +87,8 @@ By default, vim-instant-markdown will automatically launch the preview window wh
 let g:instant_markdown_autostart = 0
 ```
 
-in your .vimrc. You can then manually trigger preview via the command
-`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`. These
-commands are only available inside markdown buffers and when the autostart
-option is turned off.
+in your .vimrc. You can always manually trigger preview via the command
+`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`.
 
 ### g:instant_markdown_open_to_the_world
 By default, the server only listens on localhost. To make the server available to others in your network, edit your .vimrc and add
