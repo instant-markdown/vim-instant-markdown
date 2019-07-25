@@ -223,7 +223,7 @@ if g:instant_markdown_autostart
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
         au BufUnload <buffer> call s:popMarkdown()
-        au BufwinEnter <buffer> call s:pushMarkdown()
+        au BufWinEnter <buffer> call s:pushMarkdown()
     aug END
 else
     command! -buffer InstantMarkdownPreview call s:previewMarkdown()
