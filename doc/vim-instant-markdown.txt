@@ -118,10 +118,8 @@ you can specify
 >
     let g:instant_markdown_autostart = 0
 <
-in your .vimrc. You can then manually trigger preview via the command
-`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`. These
-commands are only available inside markdown buffers and when the autostart
-option is turned off.
+in your .vimrc. You can always manually trigger preview via the command
+`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`.
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_OPEN_TO_THE_WORLD       *g:instant_markdown_open_to_the_world*

@@ -225,7 +225,7 @@ if g:instant_markdown_autostart
         au BufUnload <buffer> call s:popMarkdown()
         au BufWinEnter <buffer> call s:pushMarkdown()
     aug END
-else
-    command! -buffer InstantMarkdownPreview call s:previewMarkdown()
-    command! -buffer InstantMarkdownStop call s:cleanUp()
 endif
+
+command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+command! -buffer InstantMarkdownStop call s:cleanUp()
