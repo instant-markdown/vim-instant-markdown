@@ -31,7 +31,7 @@ elseif filereadable(g:instant_markdown_logfile)
 endif
 
 if !exists('g:instant_markdown_autoscroll')
-    let g:instant_markdown_autoscoll = 1
+    let g:instant_markdown_autoscroll = 1
 endif
 
 if !exists('g:instant_markdown_port')
@@ -137,9 +137,9 @@ endfu
 function! s:bufGetLines(bufnr)
   let lines = getbufline(a:bufnr, 1, "$")
 
-  if g:instant_markdown_autoscoll
+  if g:instant_markdown_autoscroll
     " inject row marker
-    let row_num = line(".") - 1
+    let row_num = line(".") - 5
     let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
   endif
 
