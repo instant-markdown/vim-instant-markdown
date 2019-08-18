@@ -139,7 +139,7 @@ function! s:bufGetLines(bufnr)
 
   if g:instant_markdown_autoscroll
     " inject row marker
-    let row_num = line(".") - 5
+    let row_num = max([0, line(".") - 5])
     let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
   endif
 
