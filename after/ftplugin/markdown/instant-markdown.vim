@@ -38,6 +38,11 @@ if !exists('g:instant_markdown_port')
     let g:instant_markdown_port = 8090
 endif
 
+if !exists('g:instant_markdown_python')
+    let g:instant_markdown_python = 0
+endif
+
+
 " # Utility Functions
 let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
 " Simple system wrapper that ignores empty second args
@@ -93,25 +98,30 @@ endfu
 function! s:startDaemon(initialMDLines)
     let env = ''
     let argv = ''
-    if g:instant_markdown_open_to_the_world
-        let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
-    endif
-    if g:instant_markdown_allow_unsafe_content
-        let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
-    endif
-    if !g:instant_markdown_allow_external_content
-        let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
-    endif
-    if g:instant_markdown_mathjax
-        let argv .= ' --mathjax'
+    if !g:instant_markdown_python
+        if g:instant_markdown_open_to_the_world
+            let env .= 'INSTANT_MARKDOWN_OPEN_TO_THE_WORLD=1 '
+        endif
+        if g:instant_markdown_allow_unsafe_content
+            let env .= 'INSTANT_MARKDOWN_ALLOW_UNSAFE_CONTENT=1 '
+        endif
+        if !g:instant_markdown_allow_external_content
+            let env .= 'INSTANT_MARKDOWN_BLOCK_EXTERNAL=1 '
+        endif
+        if g:instant_markdown_mathjax
+            let argv .= ' --mathjax'
+        endif
     endif
     if exists('g:instant_markdown_browser')
         let argv .= ' --browser '.g:instant_markdown_browser
     endif
-
     let argv .= ' --port '.g:instant_markdown_port
 
-    call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
+    if g:instant_markdown_python
+        call s:systemasync(env.'smdv --stdin'.argv, a:initialMDLines)
+    else
+        call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
+    endif
 endfu
 
 function! s:initDict()
