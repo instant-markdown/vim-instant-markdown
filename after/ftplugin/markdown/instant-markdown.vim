@@ -35,7 +35,7 @@ if !exists('g:instant_markdown_autoscroll')
 endif
 
 if !exists('g:instant_markdown_port')
-  let g:instant_markdown_port = 8090
+    let g:instant_markdown_port = 8090
 endif
 
 if !exists('g:instant_markdown_python')
