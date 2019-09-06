@@ -21,6 +21,12 @@ Installation
   - `[sudo] npm -g install instant-markdown-d` or, for the pre-release version:
   - `[sudo] npm -g install instant-markdown-d@next`
 
+  alternatively:
+
+  - `pip install --user smdv`
+
+  for the Python mini-server.
+
 * Add the following to your `.vimrc`, depending on the plugin manager of your
   choice:
 
@@ -47,6 +53,8 @@ Installation
     "let g:instant_markdown_allow_unsafe_content = 1
     "let g:instant_markdown_allow_external_content = 0
     "let g:instant_markdown_mathjax = 1
+    "let g:instant_markdown_port = 8888
+    "let g:instant_markdown_python = 1
     ```
 
 **Detailed instructions**
