@@ -15,7 +15,11 @@ CONTENTS                                           *vim-instant-markdown-content
    3.3. g:instant_markdown_open_to_the_world.|g:instant_markdown_open_to_the_world|
    3.4. g:instant_markdown_allow_unsafe_content.|g:instant_markdown_allow_unsafe_content|
    3.5. g:instant_markdown_allow_external_content.|g:instant_markdown_allow_external_content|
-   3.6. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
+   3.6. g:instant_markdown_logfile...................|g:instant_markdown_logfile|
+   3.7. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
+   3.7. g:instant_markdown_browser...................|g:instant_markdown_browser|
+   3.8. g:instant_markdown_port......................|g:instant_markdown_port|
+   3.9. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
 4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
 5. FAQ.................................................|vim-instant-markdown-faq|
 
@@ -71,6 +75,8 @@ Quick start (assuming you have all the necessary dependencies):
         "let g:instant_markdown_allow_unsafe_content = 1
         "let g:instant_markdown_allow_external_content = 0
         "let g:instant_markdown_mathjax = 1
+        "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+        "let g:instant_markdown_autoscroll = 0
         "let g:instant_markdown_port = 8888
         "let g:instant_markdown_python = 1
 <
@@ -120,10 +126,8 @@ you can specify
 >
     let g:instant_markdown_autostart = 0
 <
-in your .vimrc. You can then manually trigger preview via the command
-`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`. These
-commands are only available inside markdown buffers and when the autostart
-option is turned off.
+in your .vimrc. You can always manually trigger preview via the command
+`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`.
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_OPEN_TO_THE_WORLD       *g:instant_markdown_open_to_the_world*
@@ -155,6 +159,15 @@ are allowed.  To block such content, edit your .vimrc and add
 <
 
 ------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_LOGFILE                           *g:instant_markdown_logfile*
+
+For troubleshooting, server startup and curl communication from Vim to the
+server can be logged into a file.
+>
+    let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+<
+
+------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_MATHJAX                           *g:instant_markdown_mathjax*
 
 By default, no TeX code embedded within markdown would be rendered. This option
@@ -166,6 +179,7 @@ New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_BROWSER                        *g:instant_markdown_browser*
+
 By default, browser is detected by `instant-markdown-d` depending on the OS.
  you can set something like
 >
@@ -174,10 +188,22 @@ By default, browser is detected by `instant-markdown-d` depending on the OS.
 New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
- G:INSTANT_MARKDOWN_PORT                             *g:instant_markdown_port*
+G:INSTANT_MARKDOWN_PORT                             *g:instant_markdown_port*
+
 Choose a custom port instead of the default `8090`.
 >
     let g:instant_markdown_port = 8888
+<
+New in version `instant-markdown-d==0.2.0`
+
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_AUTOSCROLL                 *g:instant_markdown_autoscroll*
+
+By default, with version `instant-markdown-d>=0.2.0`, the live preview
+auto-scrolls to where your cursor is positioned.  To disable this behaviour,
+edit your .vimrc and add
+>
+    let g:instant_markdown_autoscroll = 0
 <
 New in version `instant-markdown-d==0.2.0`
 

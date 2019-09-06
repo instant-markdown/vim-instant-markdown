@@ -53,6 +53,8 @@ Installation
     "let g:instant_markdown_allow_unsafe_content = 1
     "let g:instant_markdown_allow_external_content = 0
     "let g:instant_markdown_mathjax = 1
+    "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+    "let g:instant_markdown_autoscroll = 0
     "let g:instant_markdown_port = 8888
     "let g:instant_markdown_python = 1
     ```
@@ -62,7 +64,7 @@ Installation
 - If you're on Linux, ensure the following packages are installed:
   - `xdg-utils`
   - `curl`
-  - `nodejs-legacy` (for Debian-based systems)
+  - `nodejs`
 - If you're on Windows, you will need into install [cURL][curl] and put it on your `%PATH%`.
 - If you do not use a plugin manager, copy the
   [`after/ftplugin/markdown/instant-markdown.vim`](after/ftplugin/markdown/instant-markdown.vim)
@@ -93,10 +95,8 @@ By default, vim-instant-markdown will automatically launch the preview window wh
 let g:instant_markdown_autostart = 0
 ```
 
-in your .vimrc. You can then manually trigger preview via the command
-`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`. These
-commands are only available inside markdown buffers and when the autostart
-option is turned off.
+in your .vimrc. You can always manually trigger preview via the command
+`:InstantMarkdownPreview` and stop it via `:InstantMarkdownStop`.
 
 ### g:instant_markdown_open_to_the_world
 By default, the server only listens on localhost. To make the server available to others in your network, edit your .vimrc and add
@@ -120,6 +120,13 @@ To block such content, edit your .vimrc and add
 
 ```vim
 let g:instant_markdown_allow_external_content = 0
+```
+
+### g:instant_markdown_logfile
+For troubleshooting, server startup and curl communication from Vim to the server can be logged into a file.
+
+```
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 ```
 
 ### g:instant_markdown_mathjax
@@ -147,6 +154,17 @@ Choose a custom port instead of the default `8090`.
 
 ```vim
 let g:instant_markdown_port = 8888
+```
+
+New in version `instant-markdown-d==0.2.0`
+
+### g:instant_markdown_autoscroll
+By default, with version `instant-markdown-d>=0.2.0`, the live preview
+auto-scrolls to where your cursor is positioned.  To disable this behaviour,
+edit your .vimrc and add
+
+```vim
+let g:instant_markdown_autoscroll = 0
 ```
 
 New in version `instant-markdown-d==0.2.0`

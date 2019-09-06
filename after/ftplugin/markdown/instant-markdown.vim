@@ -23,6 +23,17 @@ if !exists('g:instant_markdown_mathjax')
     let g:instant_markdown_mathjax = 0
 endif
 
+if !exists('g:instant_markdown_logfile')
+    let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
+elseif filereadable(g:instant_markdown_logfile)
+    "Truncate the log file
+    call writefile([''], g:instant_markdown_logfile)
+endif
+
+if !exists('g:instant_markdown_autoscroll')
+    let g:instant_markdown_autoscroll = 1
+endif
+
 if !exists('g:instant_markdown_port')
   let g:instant_markdown_port = 8090
 endif
@@ -33,6 +44,7 @@ endif
 
 
 " # Utility Functions
+let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
     if strlen(a:stdin) == 0
@@ -46,14 +58,15 @@ endfu
 " redirect output in a cross-platform way. Note that stdin must be passed as a
 " List of lines.
 function! s:systemasync(cmd, stdinLines)
+    let cmd = a:cmd . s:shell_redirect
     if has('win32') || has('win64')
-        call s:winasync(a:cmd, a:stdinLines)
+        call s:winasync(cmd, a:stdinLines)
     elseif has('nvim')
-        let job_id = jobstart(a:cmd)
+        let job_id = jobstart(cmd)
         call chansend(job_id, join(a:stdinLines, "\n"))
         call chanclose(job_id, 'stdin')
     else
-        let cmd = a:cmd . '&>/dev/null &'
+        let cmd = cmd . ' &'
         call s:system(cmd, join(a:stdinLines, "\n"))
     endif
 endfu
@@ -73,12 +86,12 @@ function! s:winasync(cmd, stdinLines)
     else
         let command = a:cmd
     endif
-    exec 'silent !start /b cmd /c ' . command . ' > NUL'
+    exec 'silent !start /b cmd /c ' . command
 endfu
 
 function! s:refreshView()
     let bufnr = expand('<bufnr>')
-    call s:systemasync("curl -X PUT -T - http://localhost:8090",
+    call s:systemasync("curl -X PUT -T - http://localhost:".g:instant_markdown_port,
                 \ s:bufGetLines(bufnr))
 endfu
 
@@ -128,15 +141,17 @@ function! s:popBuffer(bufnr)
 endfu
 
 function! s:killDaemon()
-    call s:systemasync("curl -s -X DELETE http://localhost:".g:instant_markdown_port, [])
+    call s:systemasync("curl -X DELETE -w 'exit status: %{http_code}' http://localhost:".g:instant_markdown_port, [])
 endfu
 
 function! s:bufGetLines(bufnr)
   let lines = getbufline(a:bufnr, 1, "$")
 
-  " inject row marker
-  let row_num = line(".") - 1
-  let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+  if g:instant_markdown_autoscroll
+    " inject row marker
+    let row_num = line(".") - 5
+    let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+  endif
 
   return lines
 endfu
@@ -218,9 +233,9 @@ if g:instant_markdown_autostart
           au CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:temperedRefresh()
         endif
         au BufUnload <buffer> call s:popMarkdown()
-        au BufwinEnter <buffer> call s:pushMarkdown()
+        au BufWinEnter <buffer> call s:pushMarkdown()
     aug END
-else
-    command! -buffer InstantMarkdownPreview call s:previewMarkdown()
-    command! -buffer InstantMarkdownStop call s:cleanUp()
 endif
+
+command! -buffer InstantMarkdownPreview call s:previewMarkdown()
+command! -buffer InstantMarkdownStop call s:cleanUp()
