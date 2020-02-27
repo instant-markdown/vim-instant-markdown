@@ -113,7 +113,7 @@ function! s:startDaemon(initialMDLines)
         endif
     endif
     if exists('g:instant_markdown_browser')
-        let argv .= ' --browser '.g:instant_markdown_browser
+        let argv .= " --browser '".g:instant_markdown_browser."'"
     endif
     let argv .= ' --port '.g:instant_markdown_port
 
