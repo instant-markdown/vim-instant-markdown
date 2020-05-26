@@ -267,4 +267,4 @@ be found at http://github.com/instant-markdown/instant-markdown-d. A plugin can 
 written for any editor to interface with the server to get the same
 functionality found here.
 
-vim: set ft=help
+/* vim: set ft=help */
