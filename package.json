@@ -1,0 +1,18 @@
+{
+  "name": "vim-instant-markdown",
+  "author": "Suan-Aik Yeo <yeosuanaik@gmail.com>",
+  "version": "1.0.0-beta",
+  "description": "Vim plugin for markdown",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buildpeak/vim-instant-markdown.git"
+  },
+  "scripts": {
+    "test": "vim --version && LOG_LEVEL=error jest",
+    "lint": "vint --version && vint ."
+  },
+  "dependencies": {
+    "instant-markdown-d": "^0.2.0"
+  }
+}
