@@ -127,7 +127,7 @@ function! s:startDaemon(initialMDLines)
     if g:instant_markdown_python
         call s:systemasync(env.'smdv --stdin'.argv, a:initialMDLines)
     else
-        call s:systemasync(env.'instant-markdown-d'.argv, a:initialMDLines)
+        call s:systemasync(env.'node_modules/.bin/instant-markdown-d'.argv, a:initialMDLines)
     endif
 endfu
 
