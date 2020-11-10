@@ -44,6 +44,7 @@ endif
 
 
 " # Utility Functions
+let s:ROOT_DIR = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let s:shell_redirect = ' 1>> '. g:instant_markdown_logfile . ' 2>&1 '
 " Simple system wrapper that ignores empty second args
 function! s:system(cmd, stdin)
@@ -95,6 +96,11 @@ function! s:refreshView()
                 \ s:bufGetLines(bufnr))
 endfu
 
+function! s:instant_markdown_d_path()
+  let l:pluginExec = s:ResolveExecutable(s:ROOT_DIR)
+  echom l:pluginExec
+endfu
+
 function! s:startDaemon(initialMDLines)
     let env = ''
     let argv = ''
@@ -120,7 +126,7 @@ function! s:startDaemon(initialMDLines)
     if g:instant_markdown_python
         call s:systemasync(env.'smdv --stdin'.argv, a:initialMDLines)
     else
-        call s:systemasync(env.'node_modules/.bin/instant-markdown-d'.argv, a:initialMDLines)
+        call s:systemasync(env.s:ResolveExecutable(s:ROOT_DIR).argv, a:initialMDLines)
     endif
 endfu
 
@@ -237,5 +243,54 @@ if g:instant_markdown_autostart
     aug END
 endif
 
+" Searches for the existence of a directory accross 
+" ancestral parents
+function! s:TraverseAncestorDirSearch(rootDir) abort
+  let l:root = a:rootDir
+  let l:dir = 'node_modules'
+
+  while 1
+    let l:searchDir = l:root . '/' . l:dir
+    if isdirectory(l:searchDir)
+      return l:searchDir
+    endif
+
+    let l:parent = fnamemodify(l:root, ':h')
+    if l:parent == l:root
+      return -1
+    endif
+
+    let l:root = l:parent
+  endwhile
+endfunction
+
+function! s:ResolveExecutable(...) abort
+  let l:rootDir = a:0 > 0 ? a:1 : 0
+  let l:exec = -1
+
+  if isdirectory(l:rootDir)
+    let l:dir = s:TraverseAncestorDirSearch(l:rootDir)
+    if l:dir != -1
+      let l:exec = s:GetExecPath(l:dir)
+    endif
+  else
+    let l:exec = s:GetExecPath()
+  endif
+
+  return l:exec
+endfunction
+
+function! s:GetExecPath(...) abort
+  let l:rootDir = a:0 > 0 ? a:1 : -1
+  let l:dir = l:rootDir != -1 ? l:rootDir . '/.bin/' : ''
+  let l:path = l:dir . 'instant-markdown-d'
+  if executable(l:path)
+    return l:path
+  else
+    return l:dir . 'instant-markdown-d'
+  endif
+endfunction
+
 command! -buffer InstantMarkdownPreview call s:previewMarkdown()
 command! -buffer InstantMarkdownStop call s:cleanUp()
+command! InstantMarkdownDPath call s:instant_markdown_d_path()
