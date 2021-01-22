@@ -23,6 +23,10 @@ if !exists('g:instant_markdown_mathjax')
     let g:instant_markdown_mathjax = 0
 endif
 
+if !exists('g:instant_markdown_mermaid')
+    let g:instant_markdown_mermaid = 0
+endif
+
 if !exists('g:instant_markdown_logfile')
     let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
 elseif filereadable(g:instant_markdown_logfile)
@@ -110,6 +114,9 @@ function! s:startDaemon(initialMDLines)
         endif
         if g:instant_markdown_mathjax
             let argv .= ' --mathjax'
+        endif
+        if g:instant_markdown_mermaid
+            let argv .= ' --mermaid'
         endif
     endif
     if exists('g:instant_markdown_browser')

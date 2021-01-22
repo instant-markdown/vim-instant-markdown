@@ -17,9 +17,10 @@ CONTENTS                                           *vim-instant-markdown-content
    3.5. g:instant_markdown_allow_external_content.|g:instant_markdown_allow_external_content|
    3.6. g:instant_markdown_logfile...................|g:instant_markdown_logfile|
    3.7. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
-   3.7. g:instant_markdown_browser...................|g:instant_markdown_browser|
-   3.8. g:instant_markdown_port......................|g:instant_markdown_port|
-   3.9. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
+   3.8. g:instant_markdown_mermaid...................|g:instant_markdown_mermaid|
+   3.9. g:instant_markdown_browser...................|g:instant_markdown_browser|
+   3.10. g:instant_markdown_port......................|g:instant_markdown_port|
+   3.11. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
 4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
 5. FAQ.................................................|vim-instant-markdown-faq|
 
@@ -75,6 +76,7 @@ Quick start (assuming you have all the necessary dependencies):
         "let g:instant_markdown_allow_unsafe_content = 1
         "let g:instant_markdown_allow_external_content = 0
         "let g:instant_markdown_mathjax = 1
+        "let g:instant_markdown_mermaid = 1
         "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
         "let g:instant_markdown_autoscroll = 0
         "let g:instant_markdown_port = 8888
@@ -176,6 +178,15 @@ uses MathJax and launches the node server as .
     let g:instant_markdown_mathjax = 1
 <
 New in version `instant-markdown-d==0.2.0`
+
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_MERMAID                           *g:instant_markdown_mermaid*
+
+By default, mermaid diagrams are disabled. This option uses
+markdown-it-textual-uml and launches the node server as .
+>
+    let g:instant_markdown_mermaid = 1
+<
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_BROWSER                        *g:instant_markdown_browser*
