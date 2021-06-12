@@ -100,11 +100,6 @@ function! s:refreshView()
                 \ s:bufGetLines(bufnr))
 endfu
 
-function! s:instant_markdown_d_path()
-  let l:pluginExec = s:ResolveExecutable(s:ROOT_DIR)
-  echom l:pluginExec
-endfu
-
 function! s:startDaemon(initialMDLines)
     let env = ''
     let argv = ''
@@ -286,6 +281,10 @@ function! s:ResolveExecutable(...) abort
     let l:exec = s:GetExecPath()
   endif
 
+  if l:exec == -1
+    echoerr "Node.js server instant-markdown-d is unavailable. See https://github.com/instant-markdown/instant-markdown-d for installation instructions"
+  endif
+
   return l:exec
 endfunction
 
@@ -299,6 +298,11 @@ function! s:GetExecPath(...) abort
     return l:dir . 'instant-markdown-d'
   endif
 endfunction
+
+function! s:instant_markdown_d_path()
+  let l:pluginExec = s:ResolveExecutable(s:ROOT_DIR)
+  echom l:pluginExec
+endfu
 
 command! -buffer InstantMarkdownPreview call s:previewMarkdown()
 command! -buffer InstantMarkdownStop call s:cleanUp()
