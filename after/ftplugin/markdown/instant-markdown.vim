@@ -250,7 +250,7 @@ if g:instant_markdown_autostart
     aug END
 endif
 
-" Searches for the existence of a directory accross 
+" Searches for the existence of a directory accross
 " ancestral parents
 function! s:TraverseAncestorDirSearch(rootDir) abort
   let l:root = a:rootDir
@@ -275,7 +275,9 @@ function! s:ResolveExecutable(...) abort
   let l:rootDir = a:0 > 0 ? a:1 : 0
   let l:exec = -1
 
-  if isdirectory(l:rootDir)
+  if executable('instant-markdown-d')
+    let l:exec = 'instant-markdown-d'
+  elseif isdirectory(l:rootDir)
     let l:dir = s:TraverseAncestorDirSearch(l:rootDir)
     if l:dir != -1
       let l:exec = s:GetExecPath(l:dir)
