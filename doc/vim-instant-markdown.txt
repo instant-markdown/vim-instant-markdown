@@ -1,4 +1,4 @@
-*vim-instant-markdown.txt* - Last change: 2019/06/20
+*vim-instant-markdown.txt* - Last change: 2021-06-12
 *vim-instant-markdown*
 *instant-markdown*
 
@@ -7,6 +7,7 @@ CONTENTS                                           *vim-instant-markdown-content
 
 1. Introduction...............................|vim-instant-markdown-introduction|
 2. Installation...............................|vim-instant-markdown-installation|
+   2.1 One shot installation of instant-markdown-d........|:InstantMarkdownDPath|
 3. Configuration.............................|vim-instant-markdown-configuration|
    3.1. g:instant_markdown_slow.........................|g:instant_markdown_slow|
    3.2. g:instant_markdown_autostart...............|g:instant_markdown_autostart|
@@ -42,7 +43,7 @@ used while previewing are the same as those GitHub uses!
 
 Quick start (assuming you have all the necessary dependencies):
 
-*   Install the mini-server by running either:
+*   Install the Node.js mini-server by running either:
 >
       [sudo] npm -g install instant-markdown-d
 <
@@ -50,11 +51,10 @@ Quick start (assuming you have all the necessary dependencies):
 >
       [sudo] npm -g install instant-markdown-d@next
 <
-    alternatively:
+    alternatively for the Python mini-server :
 >
-      pip install --user smdv`
+      pip install --user smdv
 <
-    for the Python mini-server.
 
 *   Add the following to your `.vimrc`, depending on the plugin manager of your
     choice:
@@ -97,6 +97,17 @@ Detailed instructions
     `~/.vim/after/ftplugin/markdown/` (creating directories as
     necessary),
 -   Open a markdown file in vim and enjoy!
+
+------------------------------------------------------------------------------
+2.1 ONE SHOT INSTALLATION OF INSTANT-MARKDOWN-D       *:InstantMarkdownDPath*
+
+The server *instant-markdown-d* can also be installed using vim-plug
+as:
+>
+   Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+<
+The command resolves the path to instant-markdown-d path. This is useful if
+the tool is installed locally along with the plugin directory.
 
 --------------------------------------------------------------------------------
 3. CONFIGURATION                            *vim-instant-markdown-configuration*
@@ -256,3 +267,4 @@ be found at http://github.com/instant-markdown/instant-markdown-d. A plugin can 
 written for any editor to interface with the server to get the same
 functionality found here.
 
+vim: set ft=help
