@@ -33,7 +33,7 @@ Installation
   - [vim-plug][plug]
 
     ```vim
-    Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+    Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
     ```
 
   - [Vundle][vundle]

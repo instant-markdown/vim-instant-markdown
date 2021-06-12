@@ -1,0 +1,11 @@
+{
+  "name": "vim-instant-markdown",
+  "version": "1.0.0",
+  "description": "Preview markdown file when editing markdown file in VIM",
+  "repository": "https://github.com/suan/vim-instant-markdown",
+  "author": "Suan-Aik Yeo <yeosuanaik@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "instant-markdown-d":"^0.2.0-rc.2"
+  }
+}
