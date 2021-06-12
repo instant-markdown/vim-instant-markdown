@@ -1,3 +1,20 @@
+### 0.2.0 (2021-06-12)
+
+Notable changes:
+
+- Is now a `ftplugin` plugin
+- Improved auto scroll support
+- MermaidJS option
+- Alternative Python backend `smdv`
+- Alternative port
+
+### 0.1.0 (2019-07-19)
+
+First major release which requires `instant-markdown-d>=0.2.0`. Notable changes:
+
+- MathJax support
+- Auto scroll
+ 
 ### 0.0.2 (03-27-2012)
 All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them.
 
@@ -35,10 +52,3 @@ thanks to @terryma!
 
 - Added option to only start previewing markdown on demand
 
-### 0.0.8 (01-17-2015)
-All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them. All thanks to the awesome work of @euclio!
-
-- Ruby dependencies (pygments.rb and redcarpet) are no longer required! `instant-markdown-d` is now the only dependency
-- Plugin should be _much_ more performant and stable. Should be able to edit at brisk typing speed without slowdowns or crashes.
-- Updated to the latest github styles!
-  - Due to github not fully open-sourcing their current syntax highlighting pipeline, syntax highlighting colors are _slightly_ different.

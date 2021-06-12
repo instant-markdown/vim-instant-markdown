@@ -64,23 +64,7 @@ Quick start (assuming you have all the necessary dependencies):
 <
     *   Vundle (https://github.com/gmarik/Vundle.vim)
 >
-            Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
-<
-*   Minimal default configuration:
->
-        filetype plugin on
-        "Uncomment to override defaults:
-        "let g:instant_markdown_slow = 1
-        "let g:instant_markdown_autostart = 0
-        "let g:instant_markdown_open_to_the_world = 1
-        "let g:instant_markdown_allow_unsafe_content = 1
-        "let g:instant_markdown_allow_external_content = 0
-        "let g:instant_markdown_mathjax = 1
-        "let g:instant_markdown_mermaid = 1
-        "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-        "let g:instant_markdown_autoscroll = 0
-        "let g:instant_markdown_port = 8888
-        "let g:instant_markdown_python = 1
+            Plugin 'instant-markdown/vim-instant-markdown'
 <
 
 Detailed instructions
@@ -92,9 +76,9 @@ Detailed instructions
 -   If you're on Windows, you will need into install cURL
     (<http://curl.haxx.se/download.html>) and put it on your `%PATH%`.
 -   If you do not use a plugin manager, copy the
-    `after/ftplugin/markdown/instant-markdown.vim`
-    (after/ftplugin/markdown/instant-markdown.vim) file into
-    `~/.vim/after/ftplugin/markdown/` (creating directories as
+    `ftplugin/markdown/instant-markdown.vim`
+    (ftplugin/markdown/instant-markdown.vim) file into
+    `~/.vim/ftplugin/markdown/` (creating directories as
     necessary),
 -   Open a markdown file in vim and enjoy!
 
@@ -112,6 +96,23 @@ the tool is installed locally along with the plugin directory.
 --------------------------------------------------------------------------------
 3. CONFIGURATION                            *vim-instant-markdown-configuration*
 
+Minimal default configuration:
+
+>
+        filetype plugin on
+        "Uncomment to override defaults:
+        "let g:instant_markdown_slow = 1
+        "let g:instant_markdown_autostart = 0
+        "let g:instant_markdown_open_to_the_world = 1
+        "let g:instant_markdown_allow_unsafe_content = 1
+        "let g:instant_markdown_allow_external_content = 0
+        "let g:instant_markdown_mathjax = 1
+        "let g:instant_markdown_mermaid = 1
+        "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+        "let g:instant_markdown_autoscroll = 0
+        "let g:instant_markdown_port = 8888
+        "let g:instant_markdown_python = 1
+<
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_SLOW                                *g:instant_markdown_slow*
 
@@ -198,6 +199,7 @@ markdown-it-textual-uml and launches the node server as .
 >
     let g:instant_markdown_mermaid = 1
 <
+New in version `instant-markdown-d==0.2.0`
 
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_BROWSER                        *g:instant_markdown_browser*
@@ -249,22 +251,15 @@ OSX, Unix/Linuxes*, and Windows**.
     It's not working!
 <
 
-*   Make sure `instant-markdown-d` was installed as a global module (e.g. using )
 *   If you're on OSX and are using zsh, try to add  in your `.vimrc` to set
     interactive bash as the default vim shell. (See this issue
     (http://github.com/instant-markdown/vim-instant-markdown/issues/41))
 >
     Why don't my `<bla>.md` files trigger this plugin?
 <
-
-By default, vim versions before 7.4.480 only recognize files ending with
-`.markdown`, `.mdown`, and `README.md` as markdown files. If you want
-`<anything>.md` to be recognized, I recommend installing one of many markdown
-plugins available, such as this one (https://github.com/tpope/vim-markdown).
-
 If you're curious, the code for the mini-server component for this plugin can
-be found at http://github.com/instant-markdown/instant-markdown-d. A plugin can easily be
-written for any editor to interface with the server to get the same
-functionality found here.
+be found at http://github.com/instant-markdown/instant-markdown-d.
+A plugin can easily be written for any editor to interface with the server to
+get the same functionality found here.
 
 /* vim: set ft=help */

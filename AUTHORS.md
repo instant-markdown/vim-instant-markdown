@@ -7,6 +7,7 @@
 
 To all contributors:
 
+- buildpeak
 - Bryan Richter
 - Andy Russell
 - Anthony Panozzo
