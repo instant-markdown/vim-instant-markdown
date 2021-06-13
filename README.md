@@ -83,9 +83,32 @@ Supported Platforms
 -------------------
 OSX, Unix/Linuxes*, and Windows**.
 
-<sub>*: One annoyance in Linux is that there's no way to reliably open a browser page in the background, so you'll likely have to manually refocus your vim session everytime you open a Markdown file. If you have ideas on how to address this I'd love to know!</sub>
+<sub>*: One annoyance in Linux is that there's no way to reliably open a
+browser page in the background, so you'll likely have to manually refocus your
+vim session everytime you open a Markdown file. If you have ideas on how to
+address this I'd love to know!</sub>
 
-<sub>**: In Windows, there's no easy way to execute commands asynchronously without popping up a cmd.exe window. Thus, if you run this plugin without `g:instant_markdown_slow`, you might experience performance issues.</sub>
+<sub>**: In Windows, there's no easy way to execute commands asynchronously
+without popping up a cmd.exe window. Thus, if you run this plugin without
+`g:instant_markdown_slow`, you might experience performance issues.</sub>
+
+FAQ
+---
+> It's not working!
+
+- Make sure `instant-markdown-d` was installed as a global module (e.g. using
+  `npm -g install`)
+- Try to launch with Vim and [vim-plug][plug] and this
+  [minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-markdown/master/doc/minimal.vimrc)
+  as `vim -u vim -u minimal.vimrc my_markdown_file.md`
+- If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your
+  `.vimrc` to set interactive bash as the default Vim shell. (See [this
+  issue](http://github.com/instant-markdown/vim-instant-markdown/issues/41))
+
+_If you're curious, the code for the mini-server component for this plugin can
+be found at http://github.com/instant-markdown/instant-markdown-d. A plugin can
+easily be written for any editor to interface with the server to get the same
+functionality found here._
 
 
 [ss]: https://i.imgur.com/r7G6FNA.gif "Click for bigger preview"

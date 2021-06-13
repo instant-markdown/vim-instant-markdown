@@ -22,8 +22,6 @@ CONTENTS                                           *vim-instant-markdown-content
    3.9. g:instant_markdown_browser...................|g:instant_markdown_browser|
    3.10. g:instant_markdown_port......................|g:instant_markdown_port|
    3.11. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
-4. Supported Platforms.................|vim-instant-markdown-supported_platforms|
-5. FAQ.................................................|vim-instant-markdown-faq|
 
 ================================================================================
 1. INTRODUCTION                               *vim-instant-markdown-introduction*
@@ -230,36 +228,5 @@ edit your .vimrc and add
     let g:instant_markdown_autoscroll = 0
 <
 New in version `instant-markdown-d==0.2.0`
-
---------------------------------------------------------------------------------
-4. SUPPORTED PLATFORMS                 *vim-instant-markdown-supported_platforms*
-
-OSX, Unix/Linuxes*, and Windows**.
-
-*: One annoyance in Linux is that there's no way to reliably open a browser
-   page in the background, so you'll likely have to manually refocus your vim
-   session everytime you open a Markdown file. If you have ideas on how to address
-   this I'd love to know!
-
-**: In Windows, there's no easy way to execute commands asynchronously without
-    popping up a cmd.exe window. Thus, if you run this plugin without
-    `g:instant_markdown_slow`, you might experience performance issues.
-
---------------------------------------------------------------------------------
-5. FAQ                                               *vim-instant-markdown-faq*
->
-    It's not working!
-<
-
-*   If you're on OSX and are using zsh, try to add  in your `.vimrc` to set
-    interactive bash as the default vim shell. (See this issue
-    (http://github.com/instant-markdown/vim-instant-markdown/issues/41))
->
-    Why don't my `<bla>.md` files trigger this plugin?
-<
-If you're curious, the code for the mini-server component for this plugin can
-be found at http://github.com/instant-markdown/instant-markdown-d.
-A plugin can easily be written for any editor to interface with the server to
-get the same functionality found here.
 
 vim:tw=82:ft=help
