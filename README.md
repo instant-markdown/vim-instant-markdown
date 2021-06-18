@@ -1,6 +1,8 @@
 vim-instant-markdown
 ====================
 
+[![open collective badge](https://opencollective.com/instant-markdown/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/instant-markdown/)
+
 Want to instantly preview finicky markdown files, but don't want to leave your
 favourite editor, or have to do it in some crappy browser text area?
 **vim-instant-markdown** is your friend! When you open a markdown file in vim,
