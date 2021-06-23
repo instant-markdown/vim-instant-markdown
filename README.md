@@ -5,9 +5,9 @@ vim-instant-markdown
 
 Want to instantly preview finicky markdown files, but don't want to leave your
 favourite editor, or have to do it in some crappy browser text area?
-**vim-instant-markdown** is your friend! When you open a markdown file in vim,
+**vim-instant-markdown** is your friend! When you open a markdown file in Vim,
 a browser window will open which shows the compiled markdown in real-time, and
-closes once you close the file in vim.
+closes once you close the file in Vim.
 
 As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while
 previewing are the same as those GitHub uses!
@@ -18,7 +18,7 @@ Installation
 ------------
 **Quick start** (assuming you have all the necessary dependencies):
 
-- Install the mini-server by running either:
+- Install the Node.js mini-server by running either:
 
   - `[sudo] npm -g install instant-markdown-d` or, for the pre-release version:
   - `[sudo] npm -g install instant-markdown-d@next`
@@ -48,13 +48,13 @@ Installation
 - If you're on Linux, ensure the following packages are installed:
   - `xdg-utils`
   - `curl`
-  - `nodejs`
+  - `nodejs` (Ensure that you are using a recent stable version. [Install `node` using `n` if needed][n].)
 - If you're on Windows, you will need into install [cURL][curl] and put it on your `%PATH%`.
 - If you do not use a plugin manager, copy the
   [`ftplugin/markdown/instant-markdown.vim`](ftplugin/markdown/instant-markdown.vim)
   file into `~/.vim/ftplugin/markdown/` (creating directories as
   necessary),
-- Open a markdown file in vim and enjoy!
+- Open a markdown file in Vim and enjoy!
 
 
 Configuration
@@ -81,16 +81,18 @@ filetype plugin on
 After installing the plugin, execute [`:help vim-instant-markdown-configuration`](./doc/vim-instant-markdown.txt)
 to read more about what the different configuration options imply.
 
+
 Supported Platforms
 -------------------
-OSX, Unix/Linuxes*, and Windows**.
 
-<sub>*: One annoyance in Linux is that there's no way to reliably open a
+OSX, Linux^, and Windows^^.
+
+<sub>^ One annoyance in Linux is that there's no way to reliably open a
 browser page in the background, so you'll likely have to manually refocus your
-vim session everytime you open a Markdown file. If you have ideas on how to
+Vim session every time you open a Markdown file. If you have ideas on how to
 address this I'd love to know!</sub>
 
-<sub>**: In Windows, there's no easy way to execute commands asynchronously
+<sub>^^ In Windows, there's no easy way to execute commands asynchronously
 without popping up a cmd.exe window. Thus, if you run this plugin without
 `g:instant_markdown_slow`, you might experience performance issues.</sub>
 
@@ -98,8 +100,8 @@ FAQ
 ---
 > It's not working!
 
-- Make sure `instant-markdown-d` was installed as a global module (e.g. using
-  `npm -g install`)
+- Make sure `instant-markdown-d` was installed and verify using
+  `InstantMarkdownDPath`.
 - Try to launch with Vim and [vim-plug][plug] and this
   [minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-markdown/master/doc/minimal.vimrc)
   as `vim -u vim -u minimal.vimrc my_markdown_file.md`
@@ -115,6 +117,7 @@ functionality found here._
 
 [ss]: https://i.imgur.com/r7G6FNA.gif "Click for bigger preview"
 [ssbig]: https://i.imgur.com/4Fty7pw.gif
+[n]: https://github.com/tj/n
 [gfm]: http://github.github.com/github-flavored-markdown/
 [curl]: http://curl.haxx.se/download.html
 [tpope-markdown]: https://github.com/tpope/vim-markdown
