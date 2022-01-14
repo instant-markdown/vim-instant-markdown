@@ -1,4 +1,4 @@
-*vim-instant-markdown.txt* - Last change: 2021-06-12
+*vim-instant-markdown.txt* - Last change: 2022-01-14
 *vim-instant-markdown*
 *instant-markdown*
 
@@ -20,8 +20,9 @@ CONTENTS                                           *vim-instant-markdown-content
    3.7. g:instant_markdown_mathjax...................|g:instant_markdown_mathjax|
    3.8. g:instant_markdown_mermaid...................|g:instant_markdown_mermaid|
    3.9. g:instant_markdown_browser...................|g:instant_markdown_browser|
-   3.10. g:instant_markdown_port......................|g:instant_markdown_port|
-   3.11. g:instant_markdown_autoscroll................|g:instant_markdown_autoscroll|
+   3.10. g:instant_markdown_port........................|g:instant_markdown_port|
+   3.11. g:instant_markdown_autoscroll............|g:instant_markdown_autoscroll|
+4. Tips and tricks.........................|vim-instant-markdown-tips-and-tricks|
 
 ================================================================================
 1. INTRODUCTION                               *vim-instant-markdown-introduction*
@@ -64,12 +65,12 @@ Quick start (assuming you have all the necessary dependencies):
 >
             Plugin 'instant-markdown/vim-instant-markdown'
 <
-    *   Vim8 built-in package manager (Execute the following command instead of adding it to `.vimrc`) 
+    *   Vim8 built-in package manager (Execute the following command instead of adding it to `.vimrc`)
 >
-           # NOTE: 
+           # NOTE:
            # 1. Please check you have git installed.
            # 2. Please replace * with a package name you want.
-           git clone https://github.com/instant-markdown/vim-instant-markdown.git ~/.vim/pack/*/start/ 
+           git clone https://github.com/instant-markdown/vim-instant-markdown.git ~/.vim/pack/*/start/
 <
 
 Detailed instructions
@@ -235,5 +236,18 @@ edit your .vimrc and add
     let g:instant_markdown_autoscroll = 0
 <
 New in version `instant-markdown-d==0.2.0`
+
+--------------------------------------------------------------------------------
+4. TIPS AND TRICKS                          *vim-instant-markdown-tips-and-tricks*
+
+- Autostart vim-instant-markdown in certain paths, for example for all
+  markdown files under ~/src/someproject
+
+>
+    let g:instant_markdown_autostart = 0
+    augroup InstantMarkdownGroup
+        au! BufRead,BufNewFile,BufEnter ~/src/someproject/*.md let g:instant_markdown_autostart=1
+    augroup END
+<
 
 vim:tw=82:ft=help
