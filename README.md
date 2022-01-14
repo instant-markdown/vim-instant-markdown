@@ -42,6 +42,14 @@ Installation
     ```vim
     Plugin 'instant-markdown/vim-instant-markdown'
     ```
+  - Vim8 build-in package manager(`Execute` the following command instead of adding it to `.vimrc`)
+
+	```shell
+    # NOTE: 
+    # 1. Please check you have git installed.
+    # 2. Please replace * with a package name you want.
+    git clone https://github.com/instant-markdown/vim-instant-markdown.git ~/.vim/pack/*/start/
+	```
 
 **Detailed instructions**
 
