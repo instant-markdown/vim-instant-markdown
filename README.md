@@ -42,7 +42,7 @@ Installation
     ```vim
     Plugin 'instant-markdown/vim-instant-markdown'
     ```
-  - Vim8 build-in package manager(`Execute` the following command instead of adding it to `.vimrc`)
+  - Vim8 built-in package manager (Execute the following command instead of adding it to `.vimrc`)
 
 	```shell
     # NOTE: 
