@@ -106,16 +106,21 @@ without popping up a cmd.exe window. Thus, if you run this plugin without
 
 FAQ
 ---
-> It's not working!
+1. It's not working!
 
-- Make sure `instant-markdown-d` was installed and verify using
+   - Make sure `instant-markdown-d` was installed and verify using
   `InstantMarkdownDPath`.
-- Try to launch with Vim and [vim-plug][plug] and this
+   - Try to launch with Vim and [vim-plug][plug] and this
   [minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-markdown/master/doc/minimal.vimrc)
   as `vim -u vim -u minimal.vimrc my_markdown_file.md`
-- If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your
+   - If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your
   `.vimrc` to set interactive bash as the default Vim shell. (See [this
   issue](http://github.com/instant-markdown/vim-instant-markdown/issues/41))
+
+2. How to start it when autostart is off?
+  
+   You can use the command `:InstantMarkdownPreview` to manually start the preview. <br>
+   BTW, to disable it, use `:InstantMarkdownStop`.
 
 _If you're curious, the code for the mini-server component for this plugin can
 be found at http://github.com/instant-markdown/instant-markdown-d. A plugin can
