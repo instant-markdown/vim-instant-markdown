@@ -158,7 +158,17 @@ function! s:bufGetLines(bufnr)
   if g:instant_markdown_autoscroll
     " inject row marker
     let row_num = max([0, line(".") - 5])
-    let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+    if len(lines) < 3
+      return lines
+    endif
+
+    "From lines[row_num] find the previous empty line that is followed by a non-empty line, or the first line.
+    while ( row_num > 0 ) && !(lines[row_num] =~ '^\s*$' && !(lines[row_num + 1] =~ '^\s*$'))
+      let row_num += -1
+    endwhile
+    
+    "Insert new line with marker otherwise two paragraphs might be fused.
+    call insert(lines, '<a name="#marker" id="marker"></a>', row_num)
   endif
 
   return lines
