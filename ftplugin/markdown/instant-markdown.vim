@@ -27,6 +27,12 @@ if !exists('g:instant_markdown_mermaid')
     let g:instant_markdown_mermaid = 0
 endif
 
+if !exists('g:instant_markdown_theme')
+    let g:instant_markdown_theme = '';
+endif
+
+
+
 if !exists('g:instant_markdown_logfile')
     let g:instant_markdown_logfile = (has('win32') || has('win64') ? 'NUL' : '/dev/null')
 elseif filereadable(g:instant_markdown_logfile)
@@ -124,6 +130,10 @@ function! s:startDaemon(initialMDLines)
         let argv .= " --browser '".g:instant_markdown_browser."'"
     endif
     let argv .= ' --port '.g:instant_markdown_port
+    
+    if exists('g:instant_markdown_theme')
+        let argv .= ' --theme '.g:instant_markdown_theme
+    endif 
 
     if g:instant_markdown_python
         call s:systemasync(env.'smdv --stdin'.argv, a:initialMDLines)
