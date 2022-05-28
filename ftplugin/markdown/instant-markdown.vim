@@ -28,7 +28,7 @@ if !exists('g:instant_markdown_mermaid')
 endif
 
 if !exists('g:instant_markdown_theme')
-    let g:instant_markdown_theme = '';
+    let g:instant_markdown_theme = 'light';
 endif
 
 
