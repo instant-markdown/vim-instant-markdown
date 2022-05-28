@@ -238,6 +238,15 @@ edit your .vimrc and add
 <
 New in version `instant-markdown-d==0.2.0`
 
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_THEME                      *g:instant_markdown_theme*
+
+By default, a `light` theme will be activated. `night` is optional. And new 
+themes may provided according to the evolving of instant-markdown-d.
+>
+    let g:instant_markdown_theme = 'light'
+<
+
 --------------------------------------------------------------------------------
 4. TIPS AND TRICKS                          *vim-instant-markdown-tips-and-tricks*
 
