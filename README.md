@@ -45,7 +45,7 @@ Installation
   - Vim8 built-in package manager (Execute the following command instead of adding it to `.vimrc`)
 
 	```shell
-    # NOTE: 
+    # NOTE:
     # 1. Please check you have git installed.
     # 2. Please replace * with a package name you want.
     git clone https://github.com/instant-markdown/vim-instant-markdown.git ~/.vim/pack/*/start/
@@ -84,6 +84,7 @@ filetype plugin on
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
+"let g:instant_markdown_theme = 'dark'
 ```
 
 After installing the plugin, execute [`:help vim-instant-markdown-configuration`](./doc/vim-instant-markdown.txt)
@@ -118,7 +119,7 @@ FAQ
   issue](http://github.com/instant-markdown/vim-instant-markdown/issues/41))
 
 2. How to start it when autostart is off?
-  
+
    You can use the command `:InstantMarkdownPreview` to manually start the preview. <br>
    BTW, to disable it, use `:InstantMarkdownStop`.
 

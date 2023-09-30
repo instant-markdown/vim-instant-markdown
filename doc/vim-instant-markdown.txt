@@ -22,6 +22,7 @@ CONTENTS                                           *vim-instant-markdown-content
    3.9. g:instant_markdown_browser...................|g:instant_markdown_browser|
    3.10. g:instant_markdown_port........................|g:instant_markdown_port|
    3.11. g:instant_markdown_autoscroll............|g:instant_markdown_autoscroll|
+   3.12. g:instant_markdown_theme......................|g:instant_markdown_theme|
 4. Tips and tricks.........................|vim-instant-markdown-tips-and-tricks|
 
 ================================================================================
@@ -236,6 +237,17 @@ edit your .vimrc and add
     let g:instant_markdown_autoscroll = 0
 <
 New in version `instant-markdown-d==0.2.0`
+
+------------------------------------------------------------------------------
+G:INSTANT_MARKDOWN_THEME                            *g:instant_markdown_theme*
+
+By default, a `light` theme will be activated. A `dark` theme is also
+available. And new themes can be contributed into the instant-markdown-d
+repository.
+>
+    let g:instant_markdown_theme = 'light'
+<
+New in version `instant-markdown-d==0.3.0`
 
 --------------------------------------------------------------------------------
 4. TIPS AND TRICKS                          *vim-instant-markdown-tips-and-tricks*
