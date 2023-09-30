@@ -157,8 +157,21 @@ function! s:bufGetLines(bufnr)
 
   if g:instant_markdown_autoscroll
     " inject row marker
-    let row_num = max([0, line(".") - 5])
-    let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+
+    " The marker is inserted after an empty line to prevent it from interfering with
+    " mathjax/latex equations (which do not allow empty lines). The marker needs to be inserted
+    " before a non-empty line. 
+
+    " start of line followed by optional whitespace
+    " followed by one of '\r\n', '\r' or '\n' optionally followed by white
+    " space followed by non-whitespace '\S'
+    let pattern = '^\s*\(\(\r\n\|[\n\r]\).*\S\)\@='
+
+    " search backwards from cursor and don't wrap around and don't move cursor
+    let row_num = search(pattern,'bnW')
+
+    " The marker needs to be inserted on new line otherwise two paragraphs might be fused.
+    call insert(lines, '<a name="#marker" id="marker"></a>', row_num)
   endif
 
   return lines
