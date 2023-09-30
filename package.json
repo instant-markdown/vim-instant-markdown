@@ -6,6 +6,6 @@
   "author": "Suan-Aik Yeo <yeosuanaik@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "instant-markdown-d":"^0.2.0"
+    "instant-markdown-d":"^0.3.0"
   }
 }

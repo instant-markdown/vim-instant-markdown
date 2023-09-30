@@ -243,9 +243,9 @@ G:INSTANT_MARKDOWN_THEME                            *g:instant_markdown_theme*
 
 By default, a `light` theme will be activated. A `dark` theme is also
 available. And new themes can be contributed into the instant-markdown-d
-repository.
+repository. To enable the `dark` theme by default,
 >
-    let g:instant_markdown_theme = 'light'
+    let g:instant_markdown_theme = 'dark'
 <
 New in version `instant-markdown-d==0.3.0`
 
