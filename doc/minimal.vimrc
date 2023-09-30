@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('/tmp/instant-markdown-plugged/')
 Plug 'junegunn/vim-plug'
 Plug 'instant-markdown/vim-instant-markdown', {'for': ['markdown', 'markdown.pandoc']}
 call plug#end()

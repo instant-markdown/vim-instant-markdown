@@ -16,6 +16,7 @@ minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-ma
 to reproduce the issue and open your markdown file as:
 
 ```sh
+vim -u minimal +PlugUpdate +quitall
 vim -u minimal.vimrc my_markdown_file.md
 ```
 
