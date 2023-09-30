@@ -24,3 +24,4 @@ let g:instant_markdown_mermaid = 1
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
+"let g:instant_markdown_theme = 'dark'

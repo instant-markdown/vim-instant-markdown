@@ -241,11 +241,13 @@ New in version `instant-markdown-d==0.2.0`
 ------------------------------------------------------------------------------
 G:INSTANT_MARKDOWN_THEME                            *g:instant_markdown_theme*
 
-By default, a `light` theme will be activated. `night` is optional. And new 
-themes may provided according to the evolving of instant-markdown-d.
+By default, a `light` theme will be activated. A `dark` theme is also
+available. And new themes can be contributed into the instant-markdown-d
+repository.
 >
     let g:instant_markdown_theme = 'light'
 <
+New in version `instant-markdown-d==0.3.0`
 
 --------------------------------------------------------------------------------
 4. TIPS AND TRICKS                          *vim-instant-markdown-tips-and-tricks*
