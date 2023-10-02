@@ -1,3 +1,9 @@
+### 0.3.0 (2023-09-30)
+
+- New dark theme (thanks @peter-liu)
+- Ignore YAML front-matter while rendering (thanks @hitzhangjie)
+- Upgrade to `instant-markdown-d==0.3.0`
+
 ### 0.2.0 (2021-06-12)
 
 Notable changes:
@@ -14,7 +20,7 @@ First major release which requires `instant-markdown-d>=0.2.0`. Notable changes:
 
 - MathJax support
 - Auto scroll
- 
+
 ### 0.0.2 (03-27-2012)
 All changes for this release were made in the backend. Do `[sudo] npm -g update instant-markdown-d` to get them.
 
