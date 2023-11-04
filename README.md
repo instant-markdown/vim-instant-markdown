@@ -64,6 +64,9 @@ Installation
   necessary),
 - Open a markdown file in Vim and enjoy!
 
+**Arch-based distributions**
+- There is a package available on the AUR that installs the plugin:
+    - [vim-instant-markdown](https://aur.archlinux.org/packages/vim-instant-markdown)
 
 Configuration
 -------------
