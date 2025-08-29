@@ -18,7 +18,8 @@ Installation
 ------------
 **Quick start** (assuming you have all the necessary dependencies):
 
-- Install the Node.js mini-server by running either:
+- [Install Node.js](https://nodejs.org/en/download)
+- Install the mini-server by running either:
 
   - `[sudo] npm -g install instant-markdown-d` or, for the pre-release version:
   - `[sudo] npm -g install instant-markdown-d@next`
