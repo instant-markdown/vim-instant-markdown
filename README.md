@@ -90,7 +90,7 @@ filetype plugin on
 "let g:instant_markdown_theme = 'dark'
 ```
 
-After installing the plugin, execute [`:help vim-instant-markdown-configuration`](./doc/vim-instant-markdown.txt)
+After installing the plugin, execute [`:help vim-instant-markdown`](./doc/vim-instant-markdown.txt)
 to read more about what the different configuration options imply.
 
 
