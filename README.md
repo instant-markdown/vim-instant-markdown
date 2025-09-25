@@ -114,9 +114,12 @@ FAQ
 
    - Make sure `instant-markdown-d` was installed and verify using
   `InstantMarkdownDPath`.
-   - Try to launch with Vim and [vim-plug][plug] and this
-  [minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-markdown/master/doc/minimal.vimrc)
-  as `vim -u vim -u minimal.vimrc my_markdown_file.md`
+   - Try to launch with Vim and [vim-plug][plug] as follows:
+     - [Install vim-plug](https://github.com/junegunn/vim-plug?tab=readme-ov-file#installation)
+     - Download this [minimal.vimrc](https://raw.githubusercontent.com/instant-markdown/vim-instant-markdown/master/doc/minimal.vimrc).
+       (Optional: This minimal file, installs under `/tmp`. Adjust paths from `/tmp` if needed).
+     - Run `vim -u minimal.vimrc +PlugInstall +qall`
+     - Open any markdown file as `vim -u vim -u minimal.vimrc my_markdown_file.md` and this plugin should activate.
    - If you're on OSX and are using zsh, try to add `set shell=bash\ -i` in your
   `.vimrc` to set interactive bash as the default Vim shell. (See [this
   issue](http://github.com/instant-markdown/vim-instant-markdown/issues/41))
