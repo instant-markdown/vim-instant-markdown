@@ -1,4 +1,4 @@
-*vim-instant-markdown.txt* - Last change: 2022-01-14
+*vim-instant-markdown.txt* - Last change: 2025-09-25
 *vim-instant-markdown*
 *instant-markdown*
 
@@ -47,10 +47,6 @@ Quick start (assuming you have all the necessary dependencies):
 >
       [sudo] npm -g install instant-markdown-d
 <
-    or, for the pre-release version:
->
-      [sudo] npm -g install instant-markdown-d@next
-<
     alternatively for the Python mini-server :
 >
       pip install --user smdv
@@ -60,7 +56,7 @@ Quick start (assuming you have all the necessary dependencies):
     choice:
     *   vim-plug (https://github.com/junegunn/vim-plug)
 >
-            Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+            Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'npm install'}
 <
     *   Vundle (https://github.com/gmarik/Vundle.vim)
 >
@@ -79,7 +75,8 @@ Detailed instructions
 -   If you're on Linux, ensure the following packages are installed:
     -   `xdg-utils`
     -   `curl`
-    -   `nodejs-legacy` (for Debian-based systems)
+    -   `nodejs` (Ensure that you are using a recent stable version.
+	[Install `node` using `n`  if needed: https://github.com/tj/n .])
 -   If you're on Windows, you will need into install cURL
     (<http://curl.haxx.se/download.html>) and put it on your `%PATH%`.
 -   If you do not use a plugin manager, copy the
@@ -95,7 +92,7 @@ Detailed instructions
 The server *instant-markdown-d* can also be installed using vim-plug
 as:
 >
-   Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+   Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'npm install'}
 <
 The command resolves the path to instant-markdown-d path. This is useful if
 the tool is installed locally along with the plugin directory.

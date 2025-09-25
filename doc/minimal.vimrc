@@ -3,7 +3,7 @@ filetype off
 
 call plug#begin('/tmp/instant-markdown-plugged/')
 Plug 'junegunn/vim-plug'
-Plug 'instant-markdown/vim-instant-markdown', {'for': ['markdown', 'markdown.pandoc']}
+Plug 'instant-markdown/vim-instant-markdown', {'for': ['markdown', 'markdown.pandoc'], 'do': 'npm install'}
 call plug#end()
 
 filetype plugin indent on
