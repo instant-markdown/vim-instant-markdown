@@ -3,6 +3,7 @@ vim-instant-markdown
 
 [![open collective badge](https://opencollective.com/instant-markdown/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/instant-markdown/)
 
+
 Want to instantly preview finicky markdown files, but don't want to leave your
 favourite editor, or have to do it in some crappy browser text area?
 **vim-instant-markdown** is your friend! When you open a markdown file in Vim,
@@ -13,6 +14,10 @@ As a bonus, [github-flavored-markdown][gfm] is supported, and styles used while
 previewing are the same as those GitHub uses!
 
 [![Screenshot][ss]][ssbig]
+
+> [!TIP]
+> Neovim users may want to check out [instant-markdown.nvim](https://github.com/instant-markdown/instant-markdown.nvim) -
+> a full Lua rewrite of this plugin, which is compatible with the `instant-markdown-d` mini-server.
 
 Installation
 ------------
