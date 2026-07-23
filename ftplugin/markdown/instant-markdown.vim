@@ -125,15 +125,14 @@ function! s:startDaemon(initialMDLines)
         if g:instant_markdown_mermaid
             let argv .= ' --mermaid'
         endif
+        if exists('g:instant_markdown_theme')
+            let argv .= ' --theme '.g:instant_markdown_theme
+        endif
     endif
     if exists('g:instant_markdown_browser')
         let argv .= " --browser '".g:instant_markdown_browser."'"
     endif
     let argv .= ' --port '.g:instant_markdown_port
-
-    if exists('g:instant_markdown_theme')
-        let argv .= ' --theme '.g:instant_markdown_theme
-    endif
 
     if g:instant_markdown_python
         call s:systemasync(env.'smdv --stdin'.argv, a:initialMDLines)
